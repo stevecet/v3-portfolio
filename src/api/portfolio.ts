@@ -14,13 +14,18 @@ export const getAboutData = () => {
           "Python",
           "SQL",
           "React",
+          "React Native",
           "Angular",
           "Next.js",
           "Tailwind",
           "Laravel",
           "Express.js",
-          "Node.js",
+          "Symfony",
           "MongoDB",
+          "Cypress",
+          "Appium",
+          "Maestro",
+          "Codeception",
         ],
         profileImage: "/profile.jpg",
       });
@@ -44,31 +49,36 @@ export const getExperienceData = () => {
     setTimeout(() => {
       resolve({
         experiences: [
-          // {
-          //   _id: "1",
-          //   company: "Online Africa",
-          //   position: "Network Operator Center Engineer",
-          //   location: "Douala, Cameroon",
-          //   startDate: "Jan 2024",
-          //   endDate: "",
-          //   current: true,
-          //   description: [
-          //     "Real-time Network Monitoring:",
-          //     "Incident Response",
-          //     "Troubleshooting",
-          //     "Performance Optimization",
-          //     "Reporting and Documentation"
-          //   ],
-          //   technologies: [
-          //     // "JavaScript",
-          //     // "React",
-          //     // "Node.js",
-          //     // "GraphQL",
-          //     // "PostgreSQL",
-          //     // "AWS",
-          //   ],
-          //   website: "https://airbnb.com",
-          // },
+          {
+            _id: "1",
+            company: "Maviance",
+            position: "Software Engineer Intern",
+            location: "Douala, Cameroon",
+            startDate: "Oct 2025",
+            endDate: "",
+            current: true,
+            description: [
+              "QA & Automated Testing: Executed comprehensive functional, regression, and integration testing while implementing automated testing via Cypress/Codeception and tracking defects in JIRA.",
+              "Backend Development: Built and optimized backend architectures and third-party API connectors using PHP and Go.",
+              "Frontend Development: Developed responsive, seamless user interfaces for web and mobile applications using React and React Native.",
+              "System Stability & Documentation: Ensured system stability by writing unit tests, debugging full-stack performance issues, and documenting APIs and UI components."
+            ],
+            descriptionvf: [
+              "Assurance Qualité & Tests Automatisés : Exécution de tests fonctionnels, de régression et d'intégration complets, implémentation de tests automatisés via Cypress/Codeception et suivi des défauts dans JIRA.",
+              "Développement Backend : Conception et optimisation d'architectures backend et de connecteurs d'API tiers en utilisant PHP et Go.",
+              "Développement Frontend : Création d'interfaces utilisateur réactives et fluides pour des applications web et mobiles avec React et React Native.",
+              "Stabilité du Système & Documentation : Garantie de la stabilité du système par l'écriture de tests unitaires, le débogage full-stack et la documentation des API et composants UI."
+            ],
+            technologies: [
+              "React",
+              "React Native",
+              "PHP",
+              "Go",
+              "Cypress",
+              "Codeception",
+              "JIRA"
+            ],
+          },
           {
             _id: "2",
             company: "Esmartlearning",
@@ -92,7 +102,7 @@ export const getExperienceData = () => {
               "Laravel",
               "MySQL",
             ],
-            website: "https://airbnb.com",
+            website: "https://esmartlearning.tech",
           },
           {
             _id: "3",

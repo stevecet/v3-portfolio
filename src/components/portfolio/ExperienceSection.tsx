@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { motion, AnimatePresence } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Calendar, MapPin, Terminal } from "lucide-react"
+import { Calendar, MapPin, Building2, ChevronRight } from "lucide-react"
 import { getExperienceData } from "@/api/portfolio"
 import { useLanguage } from "@/contexts/useLanguage"
+import { cn } from "@/lib/utils"
 
 interface Experience {
   _id: string
@@ -16,6 +16,7 @@ interface Experience {
   endDate: string
   current: boolean
   description: string[]
+  descriptionvf?: string[]
   technologies: string[]
   website?: string
 }
@@ -24,7 +25,7 @@ export function ExperienceSection() {
   const [experiences, setExperiences] = useState<Experience[]>([])
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("")
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
 
   useEffect(() => {
     const fetchExperienceData = async () => {
@@ -48,19 +49,20 @@ export function ExperienceSection() {
   if (loading) {
     return (
       <section id="experience" className="min-h-screen flex items-center justify-center">
-        <div className="terminal-window p-8">
-          <div className="pt-8 text-primary font-mono">
-            <span className="text-accent">{t('experience.loading')}</span>
-            <div className="animate-pulse mt-4">████████████████████</div>
-          </div>
+        <div className="animate-pulse flex items-center space-x-2">
+          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" />
+          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
         </div>
       </section>
     )
   }
 
+  const activeExperience = experiences.find(exp => exp._id === activeTab)
+
   return (
-    <section id="experience" className="min-h-screen flex items-center py-20 scanlines">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="py-24 sm:py-32 relative bg-secondary/20">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,109 +70,118 @@ export function ExperienceSection() {
           viewport={{ once: true }}
           className="max-w-6xl mx-auto"
         >
-          <div className="text-center mb-16">
-            <h2 className="text-2xl md:text-5xl font-bold text-primary font-mono mb-4">
-              <span className="text-accent "></span> {t('experience.title')}
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4">
+              {t('experience.title')}
             </h2>
-            <div className="text-muted-foreground font-mono">
-              <span className="text-accent text-sm md:text-md">{t('experience.command')}</span>
-            </div>
+            <div className="h-1 w-20 bg-primary rounded-full"></div>
           </div>
 
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-1 md:grid-cols-4 mb-8 bg-black border border-primary rounded-sm">
+          <div className="flex flex-col md:flex-row gap-8 lg:gap-12">
+            {/* Sidebar Tabs */}
+            <div className="md:w-1/3 lg:w-1/4 flex flex-row md:flex-col overflow-x-auto md:overflow-visible hide-scrollbar border-b md:border-b-0 md:border-l border-border relative">
               {experiences.map((exp) => (
-                <TabsTrigger
+                <button
                   key={exp._id}
-                  value={exp._id}
-                  className="text-sm font-mono font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground text-primary border-r border-primary/30 last:border-r-0 rounded-none"
+                  onClick={() => setActiveTab(exp._id)}
+                  className={cn(
+                    "px-6 py-4 text-left whitespace-nowrap md:whitespace-normal transition-all duration-300 font-medium text-sm sm:text-base border-b-2 md:border-b-0 md:border-l-2 -ml-[2px]",
+                    activeTab === exp._id
+                      ? "border-primary text-primary bg-primary/5"
+                      : "border-transparent text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                  )}
                 >
-                  {exp.company.toUpperCase()}
-                </TabsTrigger>
+                  {exp.company}
+                </button>
               ))}
-            </TabsList>
+            </div>
 
-            {experiences.map((exp) => (
-              <TabsContent key={exp._id} value={exp._id}>
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Card className="retro-card">
-                    <CardHeader>
-                      <CardTitle className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                        <div>
-                          <h3 className="text-xl md:text-2xl font-bold text-primary font-mono">
-                            <Terminal className="inline h-6 w-6 mr-2" />
-                            {exp.position.toUpperCase()}
+            {/* Content Area */}
+            <div className="md:w-2/3 lg:w-3/4">
+              <AnimatePresence mode="wait">
+                {activeExperience && (
+                  <motion.div
+                    key={activeExperience._id}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Card className="border-none shadow-none bg-transparent">
+                      <CardContent className="p-0">
+                        <div className="mb-6">
+                          <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-2">
+                            {activeExperience.position}
+                            <span className="text-primary"> @ {activeExperience.company}</span>
                           </h3>
-                          <p className="text-lg text-accent font-mono">
-                            @ {exp.company.toUpperCase()}
-                          </p>
-                        </div>
-                        <div className="flex flex-col items-start md:items-end gap-2">
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground font-mono">
-                            <Calendar className="h-4 w-4" />
-                            {exp.startDate} - {exp.current ? t('experience.present') : exp.endDate}
+                          
+                          <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm text-muted-foreground mt-4">
+                            <div className="flex items-center gap-2">
+                              <Calendar className="h-4 w-4" />
+                              {activeExperience.startDate} - {activeExperience.current ? t('experience.present') : activeExperience.endDate}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <MapPin className="h-4 w-4" />
+                              {activeExperience.location}
+                            </div>
+                            {activeExperience.website && (
+                              <div className="flex items-center gap-2 text-primary">
+                                <Building2 className="h-4 w-4" />
+                                <a href={activeExperience.website} target="_blank" rel="noreferrer" className="hover:underline">
+                                  {activeExperience.website.replace('https://', '')}
+                               </a>
+                              </div>
+                            )}
                           </div>
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground font-mono">
-                            <MapPin className="h-4 w-4" />
-                            {exp.location.toUpperCase()}
-                          </div>
                         </div>
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <div className="terminal-window p-4">
-                        <div className="pt-8">
-                          <div className="text-primary font-mono text-sm mb-3">
-                            <span className="text-accent">{t('experience.tasks')}</span>
-                          </div>
-                          <ul className="space-y-3">
-                            {exp.description.map((item, index) => (
-                              <motion.li
-                                key={index}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="flex items-start gap-3 text-muted-foreground font-mono text-sm"
-                              >
-                                <span className="text-primary mt-1">&gt;</span>
-                                <span className="text-xs md:text-sm">{item}</span>
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
 
-                      <div className="terminal-window p-4">
-                        <div className="pt-8">
-                          <div className="text-primary font-mono text-sm mb-3">
-                            <span className="text-accent">{t('experience.tech')}</span>
+                        <div className="space-y-8">
+                          <div>
+                            <ul className="space-y-4">
+                              {(language === "fr" && activeExperience.descriptionvf ? activeExperience.descriptionvf : activeExperience.description).map((item, index) => (
+                                <motion.li
+                                  key={index}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: index * 0.1 }}
+                                  className="flex items-start gap-3"
+                                >
+                                  <ChevronRight className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                                  <span className="text-muted-foreground text-base leading-relaxed">{item}</span>
+                                </motion.li>
+                              ))}
+                            </ul>
                           </div>
-                          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                            {exp.technologies.map((tech, index) => (
-                              <motion.div
-                                key={tech}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: index * 0.05 }}
-                              >
-                                <Badge className="retro-badge w-full justify-center">
-                                  {tech}
-                                </Badge>
-                              </motion.div>
-                            ))}
-                          </div>
+
+                          {activeExperience.technologies && activeExperience.technologies.length > 0 && (
+                            <div>
+                              <h4 className="text-sm font-semibold mb-4 uppercase tracking-wider text-muted-foreground">
+                                {t('experience.tech')}
+                              </h4>
+                              <div className="flex flex-wrap gap-2">
+                                {activeExperience.technologies.map((tech, index) => (
+                                  <motion.div
+                                    key={tech}
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: index * 0.05 }}
+                                  >
+                                    <Badge variant="secondary" className="px-3 py-1 font-medium bg-card border-border hover:bg-primary/10">
+                                      {tech}
+                                    </Badge>
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              </TabsContent>
-            ))}
-          </Tabs>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/useToast";
 import {
@@ -9,14 +9,12 @@ import {
   Github,
   Linkedin,
   Copy,
-  Terminal,
   MessageCircle,
 } from "lucide-react";
 import { useLanguage } from "@/contexts/useLanguage";
 
 export function ContactSection() {
   const { toast } = useToast();
-
   const { t } = useLanguage();
 
   const copyEmail = () => {
@@ -26,179 +24,117 @@ export function ContactSection() {
       description: t("contact.copiedDesc"),
     });
   };
+
   const copyPhone = () => {
     navigator.clipboard.writeText("237659461748");
     toast({
-      title: t("phone.copied"),
-      description: t("phone.copiedDesc"),
+      title: t("phone.copied") || "Copied to clipboard",
+      description: t("phone.copiedDesc") || "Phone number copied to clipboard.",
     });
   };
 
   return (
-    <section
-      id="contact"
-      className="min-h-screen flex items-center py-20 scanlines"
-    >
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-24 sm:py-32 relative">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
+          className="max-w-4xl mx-auto"
         >
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-bold text-primary font-mono mb-4">
-              <span className="text-accent"></span> {t("contact.title")}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4">
+              {t("contact.title")}
             </h2>
-            <div className="text-muted-foreground font-mono mb-8">
-              <span className="text-accent">{t("contact.command")}</span>
-            </div>
+            <div className="h-1 w-20 bg-primary rounded-full mx-auto mb-6"></div>
+            <p className="text-lg text-muted-foreground">
+              {t("contact.description")}
+            </p>
           </div>
 
-          <div className="terminal-window p-6 mb-16 max-w-3xl mx-auto">
-            <div className="pt-8">
-              <p className="text-primary font-mono text-sm leading-relaxed text-center">
-                <span className="text-accent">{t("contact.status")}</span>
-                <br />
-                <span className="text-muted-foreground whitespace-pre-line pt-4">
-                  {t("contact.description")}
-                </span>
-              </p>
-            </div>
-          </div>
-
-          <div className="max-w-3xl  mb-16 mx-auto">
+          <div className="grid sm:grid-cols-2 gap-6 mb-12">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <Card className="retro-card">
-                <CardHeader>
-                  <CardTitle className="text-2xl font-bold text-primary font-mono">
-                    <Terminal className="inline h-6 w-6 mr-2" />
-                    {t("contact.info")}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="terminal-window p-4">
-                    <div className="pt-8 space-y-4">
-                      <div className="flex items-center gap-4">
-                        <div className="p-2 rounded-sm bg-primary/20 border border-primary">
-                          <Mail className="h-5 w-5 text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="font-mono text-primary text-xs md:text-md">
-                            {t("contact.email")}
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <p className="text-muted-foreground font-mono text-xs md:text-md">
-                              steveceto@gmail.com
-                            </p>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={copyEmail}
-                              className="h-6 w-6 p-0 hover:bg-primary/10"
-                            >
-                              <Copy className="h-3 w-3 text-primary" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
+              <Card className="h-full border-border bg-card hover:bg-secondary/20 transition-colors">
+                <CardContent className="p-6 sm:p-8 flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                    <Mail className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading font-semibold text-lg mb-1">{t("contact.email")}</h3>
+                    <p className="text-muted-foreground mb-3">steveceto@gmail.com</p>
+                    <Button variant="outline" size="sm" onClick={copyEmail} className="gap-2 rounded-full">
+                      <Copy className="h-4 w-4" />
+                      Copy Email
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-                      <div className="flex items-center gap-4">
-                        <div className="p-2 rounded-sm bg-primary/20 border border-primary">
-                          <Phone className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-mono text-primary text-xs md:text-md">
-                            {t("contact.phone")}
-                          </p>
-                          <div className="flex items-center gap-2">
-                            <p className="text-muted-foreground font-mono text-xs md:text-md">
-                              237659461748
-                            </p>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={copyPhone}
-                              className="h-6 w-6 p-0 hover:bg-primary/10"
-                            >
-                              <Copy className="h-3 w-3 text-primary" />
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <Card className="h-full border-border bg-card hover:bg-secondary/20 transition-colors">
+                <CardContent className="p-6 sm:p-8 flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                    <Phone className="h-6 w-6" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-heading font-semibold text-lg mb-1">{t("contact.phone")}</h3>
+                    <p className="text-muted-foreground mb-3">+237 659 461 748</p>
+                    <Button variant="outline" size="sm" onClick={copyPhone} className="gap-2 rounded-full">
+                      <Copy className="h-4 w-4" />
+                      Copy Phone
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
-                      <div className="flex items-center gap-4">
-                        <div className="p-2 rounded-sm bg-primary/20 border border-primary">
-                          <MapPin className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="font-mono text-primary text-xs md:text-md">
-                            {t("contact.location")}
-                          </p>
-                          <p className="text-muted-foreground font-mono text-xs md:text-md">
-                            {t("contact.localisation")}
-                          </p>
-                        </div>
-                      </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+              className="sm:col-span-2"
+            >
+              <Card className="border-border bg-card hover:bg-secondary/20 transition-colors">
+                <CardContent className="p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-xl bg-primary/10 text-primary">
+                      <MapPin className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-semibold text-lg mb-1">{t("contact.location")}</h3>
+                      <p className="text-muted-foreground">{t("contact.localisation")}</p>
                     </div>
                   </div>
-
-                  <div className="terminal-window p-4">
-                    <div className="pt-8">
-                      <p className="font-mono text-primary text-sm mb-4">
-                        {t("contact.social")}
-                      </p>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="gap-1 sm:gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-mono rounded-sm text-xs sm:text-sm"
-                        >
-                          <a
-                            href="https://github.com/stevecet/"
-                            target="_blank"
-                            className="flex gap-1 sm:gap-2 items-center"
-                          >
-                            <Github className="h-3 w-3 sm:h-4 sm:w-4" />
-                            GIT
-                          </a>
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="gap-1 sm:gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-mono rounded-sm text-xs sm:text-sm"
-                        >
-                          <a
-                            href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/"
-                            target="_blank"
-                            className="flex gap-1 sm:gap-2 items-center"
-                          >
-                            <Linkedin className="h-3 w-3 sm:h-4 sm:w-4" />
-                            LINKEDIN
-                          </a>
-                        </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="gap-1 sm:gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-mono rounded-sm text-xs sm:text-sm"
-                        >
-                          <a
-                            href="https://wa.me/237659461748"
-                            target="_blank"
-                            className="flex gap-1 sm:gap-2 items-center"
-                          >
-                            <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-                            WHATSAPP
-                          </a>
-                        </Button>
-                      </div>
-                    </div>
+                  
+                  <div className="flex gap-3">
+                    <a href="https://github.com/stevecet/" target="_blank" rel="noreferrer">
+                      <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
+                        <Github className="h-5 w-5" />
+                      </Button>
+                    </a>
+                    <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" rel="noreferrer">
+                      <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
+                        <Linkedin className="h-5 w-5" />
+                      </Button>
+                    </a>
+                    <a href="https://wa.me/237659461748" target="_blank" rel="noreferrer">
+                      <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
+                        <MessageCircle className="h-5 w-5" />
+                      </Button>
+                    </a>
                   </div>
                 </CardContent>
               </Card>

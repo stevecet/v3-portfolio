@@ -1,69 +1,51 @@
-@import '@fontsource/fira-code/400.css';
-@import '@fontsource/fira-code/500.css';
-@import '@fontsource/fira-code/600.css';
-@import '@fontsource/fira-code/700.css';
-@import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/jetbrains-mono/600.css';
-@import '@fontsource/jetbrains-mono/700.css';
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 3%;
-    --foreground: 210 40% 85%;
-    --card: 0 0% 6%;
-    --card-foreground: 210 40% 85%;
-    --popover: 0 0% 6%;
-    --popover-foreground: 210 40% 85%;
-    --primary: 220 70% 60%;
-    --primary-foreground: 0 0% 3%;
-    --secondary: 240 30% 15%;
-    --secondary-foreground: 210 40% 85%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 210 30% 65%;
-    --accent: 280 60% 65%;
-    --accent-foreground: 0 0% 3%;
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 50% 25%;
-    --input: 0 0% 10%;
-    --ring: 220 70% 60%;
-    --chart-1: 220 70% 60%;
-    --chart-2: 240 70% 60%;
-    --chart-3: 280 60% 65%;
-    --chart-4: 300 60% 65%;
-    --chart-5: 200 70% 60%;
-    --radius: 0.25rem;
-  }
-  .dark {
-    --background: 0 0% 3%;
-    --foreground: 210 40% 85%;
-    --card: 0 0% 6%;
-    --card-foreground: 210 40% 85%;
-    --popover: 0 0% 6%;
-    --popover-foreground: 210 40% 85%;
-    --primary: 220 70% 60%;
-    --primary-foreground: 0 0% 3%;
-    --secondary: 240 30% 15%;
-    --secondary-foreground: 210 40% 85%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 210 30% 65%;
-    --accent: 280 60% 65%;
-    --accent-foreground: 0 0% 3%;
-    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 50% 25%;
-    --input: 0 0% 10%;
-    --ring: 220 70% 60%;
-    --chart-1: 220 70% 60%;
-    --chart-2: 240 70% 60%;
-    --chart-3: 280 60% 65%;
-    --chart-4: 300 60% 65%;
-    --chart-5: 200 70% 60%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
   }
 }
 
@@ -72,11 +54,11 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', monospace;
+    @apply bg-background text-foreground font-sans;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background: linear-gradient(135deg, #000000 0%, #001122 25%, #000033 50%, #001122 75%, #000000 100%);
-    background-attachment: fixed;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
   }
 }
 
@@ -86,233 +68,53 @@
   }
 }
 
-/* Custom scrollbar - retro dark blue */
+/* Minimalist scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-  border: 1px solid hsl(var(--border));
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, hsl(var(--primary)), hsl(var(--accent)));
-  border-radius: 2px;
-  border: 1px solid hsl(var(--border));
+  background: hsl(var(--border));
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, hsl(var(--accent)), hsl(var(--primary)));
+  background: hsl(var(--muted-foreground));
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Retro terminal animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.glass-nav {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+.dark .glass-nav {
+  background: rgba(10, 10, 10, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-@keyframes scanline {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(100vh); }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.animate-glitch {
-  animation: glitch 0.3s ease-in-out;
-}
-
-/* Terminal-style gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  font-family: 'Fira Code', monospace;
-  font-weight: 600;
 }
 
-/* Retro glass effect with dark blue tint */
-.glass {
-  background: rgba(34, 85, 170, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(34, 85, 170, 0.2);
-  box-shadow: 0 0 20px rgba(34, 85, 170, 0.1);
-}
-
-.dark .glass {
-  background: rgba(34, 85, 170, 0.05);
-  border: 1px solid rgba(34, 85, 170, 0.2);
-  box-shadow: 0 0 20px rgba(34, 85, 170, 0.1);
-}
-
-/* Terminal window effect */
-.terminal-window {
-  background: rgba(0, 0, 0, 0.9);
-  border: 2px solid hsl(var(--primary));
-  border-radius: 4px;
-  box-shadow:
-    0 0 20px rgba(34, 85, 170, 0.3),
-    inset 0 0 20px rgba(34, 85, 170, 0.1);
-  position: relative;
-}
-
-.terminal-window::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  background: linear-gradient(90deg, #ff5f56, #ffbd2e, #27ca3f);
-  border-radius: 2px 2px 0 0;
-}
-
-.terminal-window::after {
-  content: '● ● ●';
-  position: absolute;
-  top: 8px;
-  left: 12px;
-  color: #000;
-  font-size: 12px;
-  z-index: 1;
-}
-
-/* Retro button styles */
-.retro-button {
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-  border: 2px solid hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
-  font-family: 'Fira Code', monospace;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(34, 85, 170, 0.3);
-}
-
-.retro-button:hover {
-  box-shadow: 0 0 20px rgba(34, 85, 170, 0.6);
-  transform: translateY(-2px);
-}
-
-/* Matrix-style background effect */
-.matrix-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  opacity: 0.1;
-}
-
-/* Scanline effect */
-.scanlines {
-  position: relative;
-  overflow: hidden;
-}
-
-.scanlines::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    transparent 50%,
-    rgba(34, 85, 170, 0.03) 50%
-  );
-  background-size: 100% 4px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Retro card styles */
-.retro-card {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid hsl(var(--primary));
-  box-shadow:
-    0 0 20px rgba(34, 85, 170, 0.2),
-    inset 0 0 20px rgba(34, 85, 170, 0.05);
-  transition: all 0.3s ease;
-}
-
-.retro-card:hover {
-  border-color: hsl(var(--accent));
-  box-shadow:
-    0 0 30px rgba(139, 69, 255, 0.3),
-    inset 0 0 20px rgba(139, 69, 255, 0.05);
-  transform: translateY(-5px);
-}
-
-/* Typing cursor effect */
-.typing-cursor {
-  display: inline-block;
-  width: 3px;
-  height: 1.2em;
-  background: hsl(var(--primary));
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-/* Retro navigation styles */
-.retro-nav {
-  background: rgba(0, 0, 0, 0.9);
-  border: 1px solid hsl(var(--primary));
-  box-shadow: 0 0 20px rgba(34, 85, 170, 0.3);
-}
-
-/* Retro form styles */
-.retro-input {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid hsl(var(--primary));
-  color: hsl(var(--foreground));
-  font-family: 'Fira Code', monospace;
-}
-
-.retro-input:focus {
-  border-color: hsl(var(--accent));
-  box-shadow: 0 0 10px rgba(139, 69, 255, 0.3);
-}
-
-/* Retro badge styles */
-.retro-badge {
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-  color: hsl(var(--primary-foreground));
-  border: 1px solid hsl(var(--primary));
-  font-family: 'Fira Code', monospace;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* Background mesh */
+.bg-mesh {
+  background-color: hsl(var(--background));
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.25) 0, transparent 60%), 
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.25) 0, transparent 60%), 
+    radial-gradient(at 100% 100%, rgba(236, 72, 153, 0.25) 0, transparent 60%),
+    radial-gradient(at 0% 100%, rgba(14, 165, 233, 0.25) 0, transparent 60%);
+  background-attachment: fixed;
 }

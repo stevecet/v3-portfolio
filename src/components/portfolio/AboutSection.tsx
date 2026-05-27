@@ -35,26 +35,19 @@ export function AboutSection() {
 
   if (loading) {
     return (
-      <section
-        id="about"
-        className="min-h-screen flex items-center justify-center"
-      >
-        <div className="terminal-window p-8">
-          <div className="pt-8 text-primary font-mono">
-            <span className="text-accent">{t("about.loading")}</span>
-            <div className="animate-pulse mt-4">████████████████████</div>
-          </div>
+      <section id="about" className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse flex items-center space-x-2">
+          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" />
+          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
         </div>
       </section>
     );
   }
 
   return (
-    <section
-      id="about"
-      className="min-h-screen flex items-center py-20 scanlines"
-    >
-      <div className="container mx-auto px-6">
+    <section id="about" className="py-24 sm:py-32 relative">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -62,47 +55,38 @@ export function AboutSection() {
           viewport={{ once: true }}
           className="max-w-6xl mx-auto"
         >
-          <div className="text-center mb-16">
-            <h2 className="md:text-5xl font-bold text-primary font-mono mb-4 text-3xl sm:text-5xl">
-              <span className="text-accent"></span> {t("about.title")}
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4">
+              {t("about.title")}
             </h2>
-            <div className="text-muted-foreground font-mono">
-              <span className="text-accent text-sm md:text-md">{t("about.command")}</span>
-            </div>
+            <div className="h-1 w-20 bg-primary rounded-full"></div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-7 space-y-6">
               {aboutData?.description.map((paragraph, index) => (
-                <motion.div
+                <motion.p
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.2 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="terminal-window p-6"
+                  className="text-lg text-muted-foreground leading-relaxed"
                 >
-                  <div className="pt-8">
-                    <p className="text-primary font-mono text-xs sm:text-sm leading-relaxed">
-                      <span className="text-accent">
-                        {t("about.output")}
-                        {index + 1}:
-                      </span>
-                      <br />
-                      <span className="text-muted-foreground ">{paragraph}</span>
-                    </p>
-                  </div>
-                </motion.div>
+                  {paragraph}
+                </motion.p>
               ))}
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.4 }}
                 viewport={{ once: true }}
+                className="pt-6"
               >
                 <Button
-                  className="retro-button mt-6 px-6 py-3 rounded-sm"
+                  size="lg"
+                  className="rounded-full px-8 h-12"
                   onClick={() => {
                     const link = document.createElement("a");
                     link.href = `${t("hero.resume_path")}`;
@@ -117,46 +101,39 @@ export function AboutSection() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="relative"
+              className="lg:col-span-5"
             >
-              <Card className="retro-card overflow-hidden">
+              <Card className="border-border bg-card/50 backdrop-blur-sm overflow-hidden shadow-2xl shadow-primary/5">
                 <CardContent className="p-8">
-                  <div className="aspect-square rounded-sm overflow-hidden mb-6 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center border-2 border-primary">
-                    <div className="text-center">
-                      <User className="h-24 w-24 text-primary mb-4 mx-auto" />
-                      <span className="text-2xl font-bold text-primary font-mono">
-                        {t("about.profile")}
-                      </span>
-                    </div>
-                  </div>
+                  {/* <div className="aspect-square rounded-2xl overflow-hidden mb-8 bg-secondary flex items-center justify-center">
+                    <User className="h-32 w-32 text-muted-foreground/50" />
+                  </div> */}
 
-                  <div className="terminal-window p-4 mb-4">
-                    <div className="pt-8">
-                      <h3 className="text-primary font-mono font-semibold mb-2">
-                        <Code2 className="inline h-4 w-4 mr-2" />
-                        {t("about.skills")}
-                      </h3>
+                  <div>
+                    <h3 className="text-xl font-heading font-semibold mb-6 flex items-center">
+                      <Code2 className="mr-2 h-5 w-5 text-primary" />
+                      {t("about.skills")}
+                    </h3>
+                    
+                    <div className="flex flex-wrap gap-2">
+                      {aboutData?.skills.map((skill, index) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.05 }}
+                          viewport={{ once: true }}
+                        >
+                          <Badge variant="secondary" className="px-4 py-1.5 text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors cursor-default">
+                            {skill}
+                          </Badge>
+                        </motion.div>
+                      ))}
                     </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2">
-                    {aboutData?.skills.map((skill, index) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        <Badge className="retro-badge w-full justify-center py-1">
-                          {skill}
-                        </Badge>
-                      </motion.div>
-                    ))}
                   </div>
                 </CardContent>
               </Card>

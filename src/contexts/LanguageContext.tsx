@@ -19,73 +19,57 @@ const translations = {
     "nav.projects": "Projects",
     "nav.contact": "Contact",
     "nav.certifications": "Certifications",
-    "nav.command.home": "./home.sh",
-    "nav.command.about": "./about.sh",
-    "nav.command.work": "./work.sh",
-    "nav.command.projects": "./projects.sh",
-    "nav.command.certifications": "./certifications.sh",
-    "nav.command.contact": "./contact.sh",
 
     // Hero Section
-    "hero.whoami": "$ whoami",
-    "hero.name": "> STEVECETO_",
+    "hero.whoami": "Software Engineer",
+    "hero.name": "STEVECETO",
     "hero.tagline": "I build exceptional digital experiences",
     "hero.description":
       "Full Stack Developer with 3+ years of experience building scalable, performant applications. Proven track record of delivering production-ready platforms for startups and freelance clients.",
-    "hero.explore": "./explore_profile.sh",
-    "hero.resume": "download resume.pdf",
+    "hero.explore": "Explore Profile",
+    "hero.resume": "Download Resume",
     "hero.resume_path": "/CV_Gilchrist_Steve_Aurel_Veceto.pdf",
     "hero.resume_file": "CV_Gilchrist_Steve_Aurel_Veceto.pdf",
 
     // About Section
-    "about.title": "> ABOUT.EXE",
-    "about.command": "~/portfolio$ cat about_me.txt",
-    "about.loading": "~/loading$ Initializing profile data...",
-    "about.output": "output_",
-    "about.download": "./download_resume.pdf",
-    "about.profile": "USER.PROFILE",
-    "about.skills": "SKILLS_ARRAY[]",
+    "about.title": "ABOUT ME",
+    "about.download": "Download CV",
+    "about.profile": "USER PROFILE",
+    "about.skills": "SKILLS & TECHNOLOGIES",
 
     // Experience Section
-    "experience.title": "> WORK_HISTORY.LOG",
-    "experience.command": "~/career$ cat experience.txt",
-    "experience.loading": "~/experience$ Loading work history...",
-    "experience.tasks": "~/tasks$ cat responsibilities.txt",
-    "experience.tech": "~/tech$ ls technologies/",
+    "experience.title": "WORK HISTORY",
+    "experience.tasks": "Responsibilities",
+    "experience.tech": "Technologies",
     "experience.present": "PRESENT",
 
     // Projects Section
-    "projects.title": "> PROJECTS.DIR",
-    "projects.command": "~/portfolio$ ls -la projects/",
-    "projects.loading": "~/projects$ Compiling project data...",
-    "projects.filter": "./filter_{category}.sh",
+    "projects.title": "MY PROJECTS",
     "projects.all": "All",
-    "projects.description": "description:",
-    "projects.tech": "tech_stack[]:",
+    "projects.description": "Description:",
+    "projects.tech": "Tech Stack:",
     "projects.code": "CODE",
     "projects.demo": "DEMO",
 
     // Certification Section
-    "certification.title": "> CERTIFICATIONS.DIR",
-    "certification.command": "~/portfolio$ ls -la certifications/",
+    "certifications.title": "CERTIFICATIONS",
 
     // Contact Section
-    "contact.title": "> CONTACT.SH",
-    "contact.command": "~/communication$ ./establish_connection.sh",
-    "contact.status": "status: AVAILABLE_FOR_OPPORTUNITIES",
+    "contact.title": "CONTACT ME",
+    "contact.status": "Available for opportunities",
     "contact.description":
       "Currently open to new challenges and collaborations. Feel free to reach out for projects, questions, or just to say hello!",
-    "contact.info": "CONNECTION_INFO",
-    "contact.form": "SEND_MESSAGE.FORM",
-    "contact.email": "EMAIL_ADDRESS:",
-    "contact.location": "LOCATION:",
-    "contact.localisation": "Douala_Cameroon",
-    "contact.phone": "PHONE_NUMBER:",
-    "contact.social": "SOCIAL_LINKS[]:",
-    "contact.name": "USER_NAME:",
-    "contact.message": "MESSAGE_CONTENT:",
-    "contact.send": "./SEND_MESSAGE.SH",
-    "contact.sending": "TRANSMITTING...",
+    "contact.info": "Contact Information",
+    "contact.form": "Send a Message",
+    "contact.email": "Email Address:",
+    "contact.location": "Location:",
+    "contact.localisation": "Douala, Cameroon",
+    "contact.phone": "Phone Number:",
+    "contact.social": "Social Links:",
+    "contact.name": "Your Name:",
+    "contact.message": "Message:",
+    "contact.send": "Send Message",
+    "contact.sending": "Sending...",
     "contact.success": "Message sent!",
     "contact.successDesc":
       "Thank you for your message. I'll get back to you soon.",
@@ -115,74 +99,57 @@ const translations = {
     "nav.projects": "Projets",
     "nav.certifications": "Certifications",
     "nav.contact": "Contact",
-    "nav.command.home": "./accueil.sh",
-    "nav.command.about": "./apropos.sh",
-    "nav.command.work": "./travail.sh",
-    "nav.command.projects": "./projets.sh",
-    "nav.command.certifications": "./certifications.sh",
-    "nav.command.contact": "./contact.sh",
 
     // Hero Section
-    "hero.whoami": "$ whoami",
-    "hero.name": "> STEVECETO_",
+    "hero.whoami": "Ingénieur Logiciel",
+    "hero.name": "STEVECETO",
     "hero.tagline": "Je crée des expériences numériques exceptionnelles",
     "hero.description":
       "Développeur Full Stack avec 3+ années d’expériences dans le développement d’applications performantes et évolutives avec. Solide expérience dans la livraison de plateformes prêtes pour la production pour des startups et des clients en freelance.",
-    "hero.explore": "./explorer_profil.sh",
-    "hero.resume": "télécharger cv.pdf",
+    "hero.explore": "Explorer le profil",
+    "hero.resume": "Télécharger CV",
     "hero.resume_path": "/Resume_Gilchrist_Steve_Aurel_Veceto.pdf",
     "hero.resume_file": "Resume_Gilchrist_Steve_Aurel_Veceto.pdf",
 
     // About Section
-    "about.title": "> APROPOS.EXE",
-    "about.command": "~/portfolio$ cat a_propos_moi.txt",
-    "about.loading": "~/chargement$ Initialisation des données de profil...",
-    "about.output": "sortie_",
-    "about.download": "./telecharger_cv.pdf",
-    "about.profile": "PROFIL.UTILISATEUR",
-    "about.skills": "COMPETENCES_ARRAY[]",
+    "about.title": "À PROPOS DE MOI",
+    "about.download": "Télécharger CV",
+    "about.profile": "PROFIL",
+    "about.skills": "COMPÉTENCES ET TECHNOLOGIES",
 
     // Experience Section
-    "experience.title": "> HISTORIQUE_TRAVAIL.LOG",
-    "experience.command": "~/carriere$ cat experience.txt",
-    "experience.loading":
-      "~/experience$ Chargement de l'historique de travail...",
-    "experience.tasks": "~/taches$ cat responsabilites.txt",
-    "experience.tech": "~/tech$ ls technologies/",
+    "experience.title": "EXPÉRIENCE PRO",
+    "experience.tasks": "Responsabilités",
+    "experience.tech": "Technologies",
     "experience.present": "PRÉSENT",
 
     // Projects Section
-    "projects.title": "> PROJETS.DIR",
-    "projects.command": "~/portfolio$ ls -la projets/",
-    "projects.loading": "~/projets$ Compilation des données de projet...",
-    "projects.filter": "./filtrer_{category}.sh",
+    "projects.title": "MES PROJETS",
     "projects.all": "Tous",
-    "projects.description": "description:",
-    "projects.tech": "pile_tech[]:",
+    "projects.description": "Description :",
+    "projects.tech": "Technologies :",
     "projects.code": "CODE",
     "projects.demo": "DÉMO",
 
     // Certification Section
-    "certification.title": "> CERTIFICATIONS.DIR",
-    "certification.command": "~/portfolio$ ls -la certifications/",
+    "certifications.title": "CERTIFICATIONS",
 
     // Contact Section
-    "contact.title": "> CONTACT.SH",
-    "contact.command": "~/communication$ ./etablir_connexion.sh",
-    "contact.status": "statut: DISPONIBLE_POUR_OPPORTUNITÉS",
+    "contact.title": "CONTACTEZ MOI",
+    "contact.status": "Disponible pour des opportunités",
     "contact.description":
-      "Actuellement ouverts aux nouveaux défis et collaborations.\nN'hésitez pas à me contacter pour des projets, des questions, ou juste pour dire bonjour!",
-    "contact.info": "INFO_CONNEXION",
-    "contact.form": "ENVOYER_MESSAGE.FORM",
-    "contact.email": "ADRESSE_EMAIL:",
-    "contact.location": "LOCALISATION:",
-    "contact.localisation": "Douala_Cameroun",
-    "contact.phone": "NUMÉRO_TÉLÉPHONE:",
-    "contact.social": "LIENS_SOCIAUX[]:",
-    "contact.name": "NOM_UTILISATEUR:",
-    "contact.message": "CONTENU_MESSAGE:",
-    "contact.send": "./ENVOYER_MESSAGE.SH",
-    "contact.sending": "TRANSMISSION...",
+      "Actuellement ouverts aux nouveaux défis et collaborations. N'hésitez pas à me contacter pour des projets, des questions, ou juste pour dire bonjour!",
+    "contact.info": "Informations de Contact",
+    "contact.form": "Envoyer un message",
+    "contact.email": "Adresse Email :",
+    "contact.location": "Localisation :",
+    "contact.localisation": "Douala, Cameroun",
+    "contact.phone": "Numéro de téléphone :",
+    "contact.social": "Liens sociaux :",
+    "contact.name": "Votre Nom :",
+    "contact.message": "Message :",
+    "contact.send": "Envoyer le message",
+    "contact.sending": "Envoi en cours...",
     "contact.success": "Message envoyé!",
     "contact.successDesc":
       "Merci pour votre message. Je vous répondrai bientôt.",
@@ -202,7 +169,7 @@ const translations = {
 
     // Common
     "common.loading": "Chargement...",
-    "common.error": "ERREUR:",
+    "common.error": "ERREUR :",
   },
 };
 
@@ -257,5 +224,3 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     </LanguageContext.Provider>
   );
 }
-
-// useLanguage hook moved to a separate file for Fast Refresh compatibility.
