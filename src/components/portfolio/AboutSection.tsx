@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Download, User, Code2 } from "lucide-react";
+import { Download, Code2 } from "lucide-react";
 import { getAboutData } from "@/api/portfolio";
 import { useLanguage } from "@/contexts/useLanguage";
 
 interface AboutData {
   description: string[];
+  descriptionvf?: string[];
   skills: string[];
   profileImage: string;
 }
@@ -16,7 +17,7 @@ interface AboutData {
 export function AboutSection() {
   const [aboutData, setAboutData] = useState<AboutData | null>(null);
   const [loading, setLoading] = useState(true);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const fetchAboutData = async () => {
@@ -64,7 +65,7 @@ export function AboutSection() {
 
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-7 space-y-6">
-              {aboutData?.description.map((paragraph, index) => (
+              {(language === "fr" && aboutData?.descriptionvf ? aboutData.descriptionvf : aboutData?.description || []).map((paragraph, index) => (
                 <motion.p
                   key={index}
                   initial={{ opacity: 0, y: 20 }}

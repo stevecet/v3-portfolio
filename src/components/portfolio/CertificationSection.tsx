@@ -7,7 +7,7 @@ import { useLanguage } from "@/contexts/useLanguage";
 import { Button } from "@/components/ui/button";
 
 export function CertificationSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="certifications" className="py-24 sm:py-32 relative bg-secondary/20">
@@ -54,7 +54,7 @@ export function CertificationSection() {
                   <CardContent className="p-6 sm:p-8 flex-1 flex flex-col">
                     <div className="mb-4 flex justify-between items-start gap-4">
                       <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
-                        {cert.title}
+                        {language === "fr" && cert.titlevf ? cert.titlevf : cert.title}
                       </h3>
                       <Badge variant="outline" className="shrink-0">
                         {cert.year}
@@ -62,7 +62,7 @@ export function CertificationSection() {
                     </div>
 
                     <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
-                      {cert.description}
+                      {language === "fr" && cert.descriptionvf ? cert.descriptionvf : cert.description}
                     </p>
 
                     <div className="space-y-6 mt-auto">
@@ -86,7 +86,7 @@ export function CertificationSection() {
                               className="w-full gap-2 group-hover:border-primary/50 transition-colors"
                             >
                               <ExternalLink className="h-4 w-4" />
-                              View Credential
+                              {t("certifications.view_credential")}
                             </Button>
                           </a>
                         </div>

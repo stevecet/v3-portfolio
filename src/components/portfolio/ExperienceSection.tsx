@@ -11,6 +11,7 @@ interface Experience {
   _id: string
   company: string
   position: string
+  positionvf?: string
   location: string
   startDate: string
   endDate: string
@@ -111,7 +112,7 @@ export function ExperienceSection() {
                       <CardContent className="p-0">
                         <div className="mb-6">
                           <h3 className="text-2xl sm:text-3xl font-heading font-bold mb-2">
-                            {activeExperience.position}
+                            {language === "fr" && activeExperience.positionvf ? activeExperience.positionvf : activeExperience.position}
                             <span className="text-primary"> @ {activeExperience.company}</span>
                           </h3>
                           

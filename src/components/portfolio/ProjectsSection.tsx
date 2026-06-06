@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, FolderOpen } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { getProjectsData } from "@/api/portfolio";
 import { useLanguage } from "@/contexts/useLanguage";
 
@@ -86,7 +86,7 @@ export function ProjectsSection() {
                     <div className="mb-4">
                       {project.featured && (
                         <span className="text-primary text-sm font-semibold tracking-wider uppercase mb-2 block">
-                          Featured Project
+                          {t("projects.featured")}
                         </span>
                       )}
                       <h3 className="text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
@@ -119,7 +119,7 @@ export function ProjectsSection() {
                               className="w-full gap-2 group-hover:border-primary/50 transition-colors"
                             >
                               <Github className="h-4 w-4" />
-                              Code
+                              {t("projects.view_code")}
                             </Button>
                           </a>
                         )}
@@ -129,7 +129,7 @@ export function ProjectsSection() {
                               className="w-full gap-2 transition-all"
                             >
                               <ExternalLink className="h-4 w-4" />
-                              Live Demo
+                              {t("projects.view_demo")}
                             </Button>
                           </a>
                         )}

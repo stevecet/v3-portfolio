@@ -70,7 +70,7 @@ export function ContactSection() {
                     <p className="text-muted-foreground mb-3">steveceto@gmail.com</p>
                     <Button variant="outline" size="sm" onClick={copyEmail} className="gap-2 rounded-full">
                       <Copy className="h-4 w-4" />
-                      Copy Email
+                      {t("contact.copy_email")}
                     </Button>
                   </div>
                 </CardContent>
@@ -93,7 +93,7 @@ export function ContactSection() {
                     <p className="text-muted-foreground mb-3">+237 659 461 748</p>
                     <Button variant="outline" size="sm" onClick={copyPhone} className="gap-2 rounded-full">
                       <Copy className="h-4 w-4" />
-                      Copy Phone
+                      {t("contact.copy_phone")}
                     </Button>
                   </div>
                 </CardContent>

@@ -4,9 +4,14 @@ export const getAboutData = () => {
     setTimeout(() => {
       resolve({
         description: [
-          "Hello! I'm Steveceto, a software developer based in Douala who enjoys building things that live on the internet. I develop websites and web apps that provide intuitive, user friendly interfaces with efficient and modern backends.",
+          "Hello! I'm Steveceto, a software engineer based in Douala who enjoys building things that live on the internet. I develop websites and web apps that provide intuitive, user friendly interfaces with efficient and modern backends.",
           "I work on a wide variety of interesting and meaningful projects on a daily basis.",
           "Here are a few technologies I've been working with recently:",
+        ],
+        descriptionvf: [
+          "Bonjour ! Je suis Steveceto, un ingénieur logiciel basé à Douala qui aime concevoir des solutions sur le web. Je développe des sites et des applications web qui offrent des interfaces utilisateur intuitives et conviviales, soutenues par des backends efficaces et modernes.",
+          "Je travaille quotidiennement sur une grande variété de projets intéressants et significatifs.",
+          "Voici quelques technologies avec lesquelles j'ai travaillé récemment :"
         ],
         skills: [
           "JavaScript",
@@ -83,6 +88,7 @@ export const getExperienceData = () => {
             _id: "2",
             company: "Esmartlearning",
             position: "Full stack developer and product designer",
+            positionvf: "Développeur Full Stack et Product Designer",
             location: "Douala, Cameroon",
             startDate: "Dec 2024",
             endDate: "",
@@ -93,6 +99,13 @@ export const getExperienceData = () => {
               "Developed a REST API with Laravel for user and test management",
               "Integrated front-end with React.js and Material UI",
               "Deployed the platform on Vercel and handled maintenance",
+            ],
+            descriptionvf: [
+              "Planification du projet, budgétisation et coordination des sprints agiles",
+              "Conception UI/UX avec Figma",
+              "Développement d'une API REST avec Laravel pour la gestion des utilisateurs et des tests",
+              "Intégration du front-end avec React.js et Material UI",
+              "Déploiement de la plateforme sur Vercel et gestion de la maintenance"
             ],
             technologies: [
               "React",
@@ -108,6 +121,7 @@ export const getExperienceData = () => {
             _id: "3",
             company: "Interstation",
             position: "Frontend Developer",
+            positionvf: "Développeur Frontend",
             location: "Douala, Cameroon",
             startDate: "August 2024",
             endDate: "Dec 2024",
@@ -117,6 +131,11 @@ export const getExperienceData = () => {
               "Implemented full UI based on provided designs",
               "Deployed the app on Vercel and ensured maintenance",
             ],
+            descriptionvf: [
+              "Développement de l'interface utilisateur avec React.js et Material UI",
+              "Implémentation de l'intégralité de l'interface utilisateur basée sur les maquettes fournies",
+              "Déploiement de l'application sur Vercel et maintenance de celle-ci"
+            ],
             technologies: ["Figma", "React.js", "Material UI", "Axios"],
             // website: "https://upstatement.com",
           },
@@ -124,6 +143,7 @@ export const getExperienceData = () => {
             _id: "4",
             company: "UWACO",
             position: "Frontend Developer Intern",
+            positionvf: "Stagiaire Développeur Frontend",
             location: "Douala, Cameroon",
             startDate: "Jul 2023",
             endDate: "Nov 2023",
@@ -133,6 +153,11 @@ export const getExperienceData = () => {
               "Optimized image and asset caching for better performance",
               "Implemented a video replay system based on live vehicle data",
             ],
+            descriptionvf: [
+              "Conception et intégration de l'interface utilisateur Angular pour une application de suivi de véhicules",
+              "Optimisation de la mise en cache des images et des ressources pour de meilleures performances",
+              "Implémentation d'un système de relecture vidéo basé sur les données de localisation en direct"
+            ],
             technologies: ["Angular", "SCSS", "Material Angular", "Nexcloud"],
             // website: "https://apple.com",
           },
@@ -140,6 +165,7 @@ export const getExperienceData = () => {
             _id: "5",
             company: "Digital Investment",
             position: "Web designer",
+            positionvf: "Web designer",
             location: "Douala, Cameroon",
             startDate: "Nov 2021",
             endDate: "Aug 2022",
@@ -148,6 +174,11 @@ export const getExperienceData = () => {
               "Designed and developed dynamic showcase websites with WordPress",
               "Created marketing visuals (banners, flyers) with Adobe Photoshop",
               "Impact: Modernized and improved UX for various client websites",
+            ],
+            descriptionvf: [
+              "Conception et développement de sites vitrines dynamiques avec WordPress",
+              "Création de visuels marketing (bannières, flyers) avec Adobe Photoshop",
+              "Impact : Modernisation et amélioration de l'expérience utilisateur (UX) pour divers sites clients"
             ],
             technologies: ["Wordpress", "Elementor", "Photoshop", "Figma"],
             // website: "https://apple.com",
@@ -265,8 +296,11 @@ export const certifications = [
   {
     id: 1,
     title: "IBM Full Stack Software Developer Professional Certificate",
+    titlevf: "Certificat Professionnel de Développeur Logiciel Full Stack IBM",
     description:
       "A comprehensive, hands-on program that equips with the skills to build, deploy, and manage full-stack applications, covering essential concepts in DevOps, containerization with Docker, version control with Git/GitHub, and cloud deployment using IBM Cloud and CI/CD pipelines.",
+    descriptionvf:
+      "Un programme complet et pratique qui fournit les compétences nécessaires pour concevoir, déployer et gérer des applications full-stack, couvrant les concepts essentiels de DevOps, la conteneurisation avec Docker, la gestion de versions avec Git/GitHub et le déploiement cloud avec IBM Cloud et les pipelines CI/CD.",
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/960px-IBM_logo.svg.png?20250604110737",
     technologies: [
@@ -279,7 +313,7 @@ export const certifications = [
       "Microservices and Serveless",
       "Git(Version Control System)",
     ],
-    liveUrl: "https://example-ai-dashboard.com",
+    liveUrl: "https://drive.google.com/drive/folders/1HoyhcCCafW1UhpKp37nTAlgFrvkjMz8v?usp=sharing",
     githubUrl: "https://github.com/username/ai-dashboard",
     featured: true,
     year: "2025",

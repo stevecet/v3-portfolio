@@ -1,14 +1,18 @@
+import { useLanguage } from "@/contexts/useLanguage"
+
 export function Footer() {
+  const { t } = useLanguage()
+
   return (
     <footer className="py-8 border-t border-border bg-background">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Steve Veceto. All rights reserved.
+            © {new Date().getFullYear()} Steve Veceto. {t("footer.rights")}
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 mt-4 md:mt-0">
             <div className="flex items-center gap-3">
-              <span className="text-sm text-muted-foreground">Previous versions:</span>
+              <span className="text-sm text-muted-foreground">{t("footer.previous_versions")}</span>
               <a href="https://v1.steveceto.dev" target="_blank" rel="noreferrer" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
                 v1
               </a>

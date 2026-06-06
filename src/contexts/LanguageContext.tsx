@@ -28,8 +28,8 @@ const translations = {
       "Full Stack Developer with 3+ years of experience building scalable, performant applications. Proven track record of delivering production-ready platforms for startups and freelance clients.",
     "hero.explore": "Explore Profile",
     "hero.resume": "Download Resume",
-    "hero.resume_path": "/CV_Gilchrist_Steve_Aurel_Veceto.pdf",
-    "hero.resume_file": "CV_Gilchrist_Steve_Aurel_Veceto.pdf",
+    "hero.resume_path": "/Resume_Gilchrist_Steve_Aurel_Veceto.pdf",
+    "hero.resume_file": "Resume_Gilchrist_Steve_Aurel_Veceto.pdf",
 
     // About Section
     "about.title": "ABOUT ME",
@@ -50,9 +50,13 @@ const translations = {
     "projects.tech": "Tech Stack:",
     "projects.code": "CODE",
     "projects.demo": "DEMO",
+    "projects.featured": "Featured Project",
+    "projects.view_code": "Code",
+    "projects.view_demo": "Live Demo",
 
     // Certification Section
     "certifications.title": "CERTIFICATIONS",
+    "certifications.view_credential": "View Credential",
 
     // Contact Section
     "contact.title": "CONTACT ME",
@@ -79,6 +83,18 @@ const translations = {
     "phone.copied": "Phone copied!",
     "contact.copiedDesc": "Email address copied to clipboard.",
     "phone.copiedDesc": "Phone number copied to clipboard.",
+    "contact.copy_email": "Copy Email",
+    "contact.copy_phone": "Copy Phone",
+
+    // Footer
+    "footer.previous_versions": "Previous versions:",
+    "footer.rights": "All rights reserved.",
+
+    // Blank Page
+    "blank.title": "Page Under Construction",
+    "blank.description": "This page is not yet implemented.",
+    "blank.instruction": "Please tell Pythagora to implement the {path} page",
+    "blank.go_home": "Go Back Home",
 
     // Form placeholders
     "form.name": "Enter your name...",
@@ -105,11 +121,12 @@ const translations = {
     "hero.name": "STEVECETO",
     "hero.tagline": "Je crée des expériences numériques exceptionnelles",
     "hero.description":
-      "Développeur Full Stack avec 3+ années d’expériences dans le développement d’applications performantes et évolutives avec. Solide expérience dans la livraison de plateformes prêtes pour la production pour des startups et des clients en freelance.",
+      "Développeur Full Stack avec 3+ années d’expériences dans le développement d’applications performantes et évolutives. Solide expérience dans la livraison de plateformes prêtes pour la production pour des startups et des clients en freelance.",
     "hero.explore": "Explorer le profil",
     "hero.resume": "Télécharger CV",
-    "hero.resume_path": "/Resume_Gilchrist_Steve_Aurel_Veceto.pdf",
-    "hero.resume_file": "Resume_Gilchrist_Steve_Aurel_Veceto.pdf",
+    "hero.resume_path": "/CV_Gilchrist_Steve_Aurel_Veceto.pdf",
+    "hero.resume_file": "CV_Gilchrist_Steve_Aurel_Veceto.pdf",
+   
 
     // About Section
     "about.title": "À PROPOS DE MOI",
@@ -130,9 +147,13 @@ const translations = {
     "projects.tech": "Technologies :",
     "projects.code": "CODE",
     "projects.demo": "DÉMO",
+    "projects.featured": "Projet Phare",
+    "projects.view_code": "Code",
+    "projects.view_demo": "Démo Live",
 
     // Certification Section
     "certifications.title": "CERTIFICATIONS",
+    "certifications.view_credential": "Voir l'accréditation",
 
     // Contact Section
     "contact.title": "CONTACTEZ MOI",
@@ -159,6 +180,18 @@ const translations = {
     "phone.copied": "Telephone copié!",
     "contact.copiedDesc": "Adresse email copiée dans le presse-papiers.",
     "phone.copiedDesc": "Numero de téléphone copié dans le presse-papiers.",
+    "contact.copy_email": "Copier l'email",
+    "contact.copy_phone": "Copier le téléphone",
+
+    // Footer
+    "footer.previous_versions": "Versions précédentes :",
+    "footer.rights": "Tous droits réservés.",
+
+    // Blank Page
+    "blank.title": "Page en cours de construction",
+    "blank.description": "Cette page n'est pas encore implémentée.",
+    "blank.instruction": "Veuillez demander à Pythagora d'implémenter la page {path}",
+    "blank.go_home": "Retourner à l'accueil",
 
     // Form placeholders
     "form.name": "Entrez votre nom...",
