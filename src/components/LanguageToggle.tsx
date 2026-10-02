@@ -14,7 +14,7 @@ export function LanguageToggle() {
       variant="outline"
       size="sm"
       onClick={toggleLanguage}
-      className="gap-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-mono rounded-sm"
+      className="gap-2 border-border text-foreground hover:bg-secondary hover:text-foreground font-mono rounded-none"
     >
       <Languages className="h-4 w-4" />
       {language.toUpperCase()}

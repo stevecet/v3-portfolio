@@ -1,107 +1,191 @@
-import { Button } from "@/components/ui/button";
-import { Download, Github, Linkedin, Mail, ArrowRight } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/useLanguage";
 
 export function HeroSection() {
   const { t } = useLanguage();
 
-  const scrollToAbout = () => {
-    const aboutSection = document.getElementById("about");
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: "smooth" });
+  const scrollToSection = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-mesh px-4 sm:px-6"
+      className="min-h-screen flex items-center relative overflow-hidden bg-background px-4 sm:px-6 pt-20"
     >
-      <div className="absolute inset-0 bg-background/50 backdrop-blur-[100px]" />
-
-      <div className="container mx-auto px-0 sm:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+      <div className="absolute inset-0 grid-bg opacity-30 dark:opacity-10 pointer-events-none" />
+      
+      <div className="container mx-auto px-0 sm:px-6 relative z-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-6 px-4 py-1.5 rounded-full border border-border bg-secondary/30 backdrop-blur-sm text-sm font-medium text-muted-foreground flex items-center gap-2"
-          >
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            {t("hero.whoami")}
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-4xl sm:text-6xl md:text-8xl font-heading font-extrabold tracking-tight mb-6"
-          >
-            Steve <span className="gradient-text">VECETO</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-2xl mb-12 font-medium leading-relaxed text-balance"
-          >
-            {t("hero.tagline")}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 w-full sm:w-auto"
-          >
-            <Button
-              size="lg"
-              onClick={scrollToAbout}
-              className="w-full sm:w-auto px-8 h-14 rounded-full text-base font-semibold group transition-all"
+          {/* Main Content Content */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 flex items-center gap-3"
             >
-              {t("hero.explore")}
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
+              <div className="h-[1px] w-8 bg-foreground"></div>
+              <span className="font-mono text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+                Software Engineer &middot; Full Stack
+              </span>
+            </motion.div>
 
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => {
-                const link = document.createElement("a");
-                link.href = `${t("hero.resume_path")}`;
-                link.download = `${t("hero.resume_file")}`;
-                link.click();
-              }}
-              className="w-full sm:w-auto px-8 h-14 rounded-full text-base font-semibold hover:bg-secondary border-border"
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl sm:text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-8 leading-[1.1]"
             >
-              <Download className="mr-2 h-4 w-4" />
-              {t("hero.resume")}
-            </Button>
-          </motion.div>
+              I build software that <br className="hidden md:block" />
+              <span className="text-muted-foreground">solves real problems.</span>
+            </motion.h1>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex justify-center space-x-6"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-base sm:text-lg text-muted-foreground max-w-xl mb-12 font-mono leading-relaxed"
+            >
+              <p>
+                Focusing on robust architecture, clean code, and scalable systems.
+                4+ years experience in building production-ready platforms.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 mb-16 w-full sm:w-auto"
+            >
+              <button
+                onClick={() => scrollToSection('projects')}
+                className="group flex items-center justify-center gap-3 bg-foreground text-background px-8 h-12 text-sm font-mono font-medium transition-transform hover:-translate-y-1"
+              >
+                View projects
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="flex items-center justify-center gap-3 border border-border bg-transparent px-8 h-12 text-sm font-mono font-medium hover:bg-secondary transition-colors"
+              >
+                Contact me
+              </button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex items-center gap-6"
+            >
+              <a href="https://github.com/stevecet/" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Github className="h-5 w-5" />
+                <span className="sr-only">GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+              <a href="mailto:steveceto@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
+                <Mail className="h-5 w-5" />
+                <span className="sr-only">Email</span>
+              </a>
+              <div className="h-4 w-[1px] bg-border mx-2"></div>
+              <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                AVAILABLE FOR WORK
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Technical Visual/Animation */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="lg:col-span-5 hidden lg:flex flex-col border border-border bg-card p-6 relative"
           >
-            <a href="https://github.com/stevecet/" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Github className="h-6 w-6" />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Linkedin className="h-6 w-6" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-            <a href="mailto:steveceto@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors">
-              <Mail className="h-6 w-6" />
-              <span className="sr-only">Email</span>
-            </a>
-          </motion.div>
+            <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-foreground -translate-x-[1px] -translate-y-[1px]" />
+            <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-foreground translate-x-[1px] -translate-y-[1px]" />
+            <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-foreground -translate-x-[1px] translate-y-[1px]" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-foreground translate-x-[1px] translate-y-[1px]" />
 
+            <div className="flex justify-between items-center mb-8 border-b border-border pb-4">
+              <span className="font-mono text-xs text-muted-foreground">01 / ENGINEERING</span>
+              <span className="font-mono text-xs text-muted-foreground">SYS.OP</span>
+            </div>
+
+            <div className="space-y-4 font-mono text-sm">
+              <div className="flex gap-4 items-start">
+                <span className="text-muted-foreground w-8">01</span>
+                <div className="text-foreground">
+                  <span className="text-blue-500">import</span> {`{ React }`} <span className="text-blue-500">from</span> 'frontend'
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <span className="text-muted-foreground w-8">02</span>
+                <div className="text-foreground">
+                  <span className="text-blue-500">import</span> {`{ Laravel, Node }`} <span className="text-blue-500">from</span> 'backend'
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <span className="text-muted-foreground w-8">03</span>
+                <div className="text-foreground">
+                  <span className="text-blue-500">import</span> {`{ MySQL, Postgres }`} <span className="text-blue-500">from</span> 'database'
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <span className="text-muted-foreground w-8">04</span>
+                <div className="text-foreground">
+                  <span className="text-blue-500">import</span> {`{ TypeScript }`} <span className="text-blue-500">from</span> 'core'
+                </div>
+              </div>
+              <div className="h-4"></div>
+              <div className="flex gap-4 items-start">
+                <span className="text-muted-foreground w-8">05</span>
+                <div className="text-foreground">
+                  <span className="text-purple-500">const</span> buildSystem = () =&gt; {`{`}
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <span className="text-muted-foreground w-8">06</span>
+                <div className="text-foreground pl-4">
+                  return <span className="text-green-500">"Scalable & Maintainable"</span>;
+                </div>
+              </div>
+              <div className="flex gap-4 items-start">
+                <span className="text-muted-foreground w-8">07</span>
+                <div className="text-foreground">
+                  {`}`}
+                </div>
+              </div>
+              <div className="flex gap-4 items-start mt-4">
+                <span className="text-muted-foreground w-8">&gt;_</span>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+                  className="w-2 h-4 bg-foreground"
+                />
+              </div>
+            </div>
+            
+            <div className="mt-12 flex flex-wrap gap-2">
+              {['REACT', 'LARAVEL', 'TYPESCRIPT', 'NODE.JS', 'MYSQL'].map((tech) => (
+                <span key={tech} className="text-[10px] font-mono border border-border px-2 py-1 text-muted-foreground">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

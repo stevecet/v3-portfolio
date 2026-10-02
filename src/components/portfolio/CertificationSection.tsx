@@ -1,103 +1,82 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Award } from "lucide-react";
 import { certifications } from "@/api/portfolio";
 import { useLanguage } from "@/contexts/useLanguage";
-import { Button } from "@/components/ui/button";
 
 export function CertificationSection() {
   const { t, language } = useLanguage();
 
   return (
-    <section id="certifications" className="py-24 sm:py-32 relative bg-secondary/20">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section id="certifications" className="py-24 sm:py-32 relative bg-background border-t border-border">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
+          className="mb-20"
         >
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4 flex items-center">
-              <Award className="mr-4 h-8 w-8 text-primary" />
-              {t("certifications.title") || "Certifications"}
+          <div className="flex items-center gap-4 mb-4">
+            <span className="font-mono text-xs text-muted-foreground">04 /</span>
+            <h2 className="text-3xl md:text-4xl font-sans font-bold tracking-tight flex items-center">
+              Certifications.
             </h2>
-            <div className="h-1 w-20 bg-primary rounded-full"></div>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={cert.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group h-full"
-              >
-                <Card className="h-full border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 flex flex-col">
-                  {/* Image Container */}
-                  <div className="relative aspect-video overflow-hidden bg-white/5 p-8 flex items-center justify-center">
-                    {cert.image ? (
-                      <img 
-                        src={cert.image} 
-                        alt={cert.title} 
-                        className="w-32 h-auto object-contain transition-transform duration-500 group-hover:scale-110"
-                      />
-                    ) : (
-                      <Award className="h-16 w-16 text-muted-foreground/30" />
-                    )}
-                  </div>
-
-                  <CardContent className="p-6 sm:p-8 flex-1 flex flex-col">
-                    <div className="mb-4 flex justify-between items-start gap-4">
-                      <h3 className="text-xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
-                        {language === "fr" && cert.titlevf ? cert.titlevf : cert.title}
-                      </h3>
-                      <Badge variant="outline" className="shrink-0">
-                        {cert.year}
-                      </Badge>
-                    </div>
-
-                    <p className="text-muted-foreground text-sm leading-relaxed mb-6 flex-1">
-                      {language === "fr" && cert.descriptionvf ? cert.descriptionvf : cert.description}
-                    </p>
-
-                    <div className="space-y-6 mt-auto">
-                      <div className="flex flex-wrap gap-2">
-                        {cert.technologies.map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="secondary"
-                            className="bg-secondary/50 font-medium text-xs py-1"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      {cert.liveUrl && (
-                        <div className="pt-4 border-t border-border">
-                          <a href={cert.liveUrl} target="_blank" rel="noreferrer">
-                            <Button
-                              variant="outline"
-                              className="w-full gap-2 group-hover:border-primary/50 transition-colors"
-                            >
-                              <ExternalLink className="h-4 w-4" />
-                              {t("certifications.view_credential")}
-                            </Button>
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <p className="font-mono text-sm text-muted-foreground max-w-2xl">
+            Formal training and credentials.
+          </p>
         </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12">
+          {certifications.map((cert, index) => (
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group flex flex-col sm:flex-row border border-border bg-card overflow-hidden"
+            >
+              {/* Logo / Image side */}
+              <div className="w-full sm:w-1/3 bg-secondary/50 p-8 flex items-center justify-center border-b sm:border-b-0 sm:border-r border-border">
+                {cert.image ? (
+                  <img 
+                    src={cert.image} 
+                    alt={cert.title} 
+                    className="w-24 h-auto object-contain grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                  />
+                ) : (
+                  <Award className="h-12 w-12 text-muted-foreground" />
+                )}
+              </div>
+
+              {/* Content side */}
+              <div className="w-full sm:w-2/3 p-8 flex flex-col">
+                <div className="font-mono text-xs text-muted-foreground mb-4 flex justify-between items-center">
+                  <span>{cert.year || "CREDENTIAL"}</span>
+                </div>
+                
+                <h3 className="text-xl font-sans font-bold mb-4 leading-tight">
+                  {language === "fr" && cert.titlevf ? cert.titlevf : cert.title}
+                </h3>
+                
+                <p className="text-muted-foreground text-sm leading-relaxed mb-8 flex-grow">
+                  {language === "fr" && cert.descriptionvf ? cert.descriptionvf : cert.description}
+                </p>
+
+                {cert.liveUrl && (
+                  <a 
+                    href={cert.liveUrl} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="mt-auto inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-foreground hover:text-muted-foreground transition-colors"
+                  >
+                    {t("certifications.view_credential") || "View Credential"} <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

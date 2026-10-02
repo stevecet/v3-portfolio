@@ -1,16 +1,6 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/useToast";
-import {
-  Mail,
-  MapPin,
-  Phone,
-  Github,
-  Linkedin,
-  Copy,
-  MessageCircle,
-} from "lucide-react";
+import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/contexts/useLanguage";
 
 export function ContactSection() {
@@ -25,122 +15,96 @@ export function ContactSection() {
     });
   };
 
-  const copyPhone = () => {
-    navigator.clipboard.writeText("237659461748");
-    toast({
-      title: t("phone.copied") || "Copied to clipboard",
-      description: t("phone.copiedDesc") || "Phone number copied to clipboard.",
-    });
-  };
-
   return (
-    <section id="contact" className="py-24 sm:py-32 relative">
-      <div className="container mx-auto px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4">
-              {t("contact.title")}
-            </h2>
-            <div className="h-1 w-20 bg-primary rounded-full mx-auto mb-6"></div>
-            <p className="text-lg text-muted-foreground">
-              {t("contact.description")}
-            </p>
-          </div>
+    <section id="contact" className="py-32 relative bg-background border-t border-border overflow-hidden">
+      <div className="absolute inset-0 grid-bg opacity-30 dark:opacity-10 pointer-events-none" />
+      
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
+        <div className="flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <span className="font-mono text-sm tracking-widest text-muted-foreground uppercase border border-border px-4 py-2 bg-card">
+              05 / Next Steps
+            </span>
+          </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-6 mb-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full border-border bg-card hover:bg-secondary/20 transition-colors">
-                <CardContent className="p-6 sm:p-8 flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                    <Mail className="h-6 w-6" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-heading font-semibold text-lg mb-1">{t("contact.email")}</h3>
-                    <p className="text-muted-foreground mb-3">steveceto@gmail.com</p>
-                    <Button variant="outline" size="sm" onClick={copyEmail} className="gap-2 rounded-full">
-                      <Copy className="h-4 w-4" />
-                      {t("contact.copy_email")}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl sm:text-6xl md:text-7xl font-sans font-bold tracking-tighter mb-6 uppercase"
+          >
+            Have a problem <br/>
+            <span className="text-muted-foreground">worth solving?</span>
+          </motion.h2>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full border-border bg-card hover:bg-secondary/20 transition-colors">
-                <CardContent className="p-6 sm:p-8 flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                    <Phone className="h-6 w-6" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-heading font-semibold text-lg mb-1">{t("contact.phone")}</h3>
-                    <p className="text-muted-foreground mb-3">+237 659 461 748</p>
-                    <Button variant="outline" size="sm" onClick={copyPhone} className="gap-2 rounded-full">
-                      <Copy className="h-4 w-4" />
-                      {t("contact.copy_phone")}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-lg md:text-xl text-foreground font-mono mb-16 max-w-2xl"
+          >
+            Let's build it.
+          </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              viewport={{ once: true }}
-              className="sm:col-span-2"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row items-center gap-6 mb-24"
+          >
+            <a 
+              href="mailto:steveceto@gmail.com"
+              className="bg-foreground text-background px-8 h-14 flex items-center justify-center font-mono text-sm font-medium transition-transform hover:-translate-y-1 w-full sm:w-auto"
             >
-              <Card className="border-border bg-card hover:bg-secondary/20 transition-colors">
-                <CardContent className="p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6 justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-xl bg-primary/10 text-primary">
-                      <MapPin className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-heading font-semibold text-lg mb-1">{t("contact.location")}</h3>
-                      <p className="text-muted-foreground">{t("contact.localisation")}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-3">
-                    <a href="https://github.com/stevecet/" target="_blank" rel="noreferrer">
-                      <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
-                        <Github className="h-5 w-5" />
-                      </Button>
-                    </a>
-                    <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" rel="noreferrer">
-                      <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
-                        <Linkedin className="h-5 w-5" />
-                      </Button>
-                    </a>
-                    <a href="https://wa.me/237659461748" target="_blank" rel="noreferrer">
-                      <Button variant="outline" size="icon" className="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
-                        <MessageCircle className="h-5 w-5" />
-                      </Button>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </motion.div>
+              Contact Me
+            </a>
+            <button 
+              onClick={copyEmail}
+              className="border border-border bg-transparent px-8 h-14 flex items-center justify-center font-mono text-sm font-medium hover:bg-secondary transition-colors w-full sm:w-auto"
+            >
+              Copy Email
+            </button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 font-mono text-sm w-full max-w-4xl border-t border-border pt-12"
+          >
+            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
+              <span className="text-muted-foreground text-xs tracking-widest uppercase">Email</span>
+              <a href="mailto:steveceto@gmail.com" className="hover:text-muted-foreground transition-colors break-all">steveceto@gmail.com</a>
+            </div>
+            
+            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
+              <span className="text-muted-foreground text-xs tracking-widest uppercase">Location</span>
+              <span className="flex items-center gap-1"><MapPin className="w-3 h-3"/> Douala, Cameroon</span>
+            </div>
+
+            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
+              <span className="text-muted-foreground text-xs tracking-widest uppercase">GitHub</span>
+              <a href="https://github.com/stevecet/" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-muted-foreground transition-colors">
+                <Github className="w-3 h-3"/> @stevecet
+              </a>
+            </div>
+
+            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
+              <span className="text-muted-foreground text-xs tracking-widest uppercase">LinkedIn</span>
+              <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-muted-foreground transition-colors">
+                <Linkedin className="w-3 h-3"/> View Profile
+              </a>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

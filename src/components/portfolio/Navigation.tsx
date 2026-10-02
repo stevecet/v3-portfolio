@@ -25,12 +25,12 @@ export function Navigation({ activeSection }: NavigationProps) {
   }, [])
 
   const navItems = [
-    { id: "hero", label: t('nav.home'), icon: Home },
-    { id: "about", label: t('nav.about'), icon: User },
-    { id: "experience", label: t('nav.experience'), icon: Briefcase },
-    { id: "projects", label: t('nav.projects'), icon: FolderOpen },
-    { id: "certifications", label: t('nav.certifications'), icon: BadgeCheck },
-    { id: "contact", label: t('nav.contact'), icon: Mail },
+    { id: "hero", label: "00. Home", icon: Home },
+    { id: "about", label: "01. About", icon: User },
+    { id: "experience", label: "02. Experience", icon: Briefcase },
+    { id: "projects", label: "03. Projects", icon: FolderOpen },
+    { id: "certifications", label: "04. Certs", icon: BadgeCheck },
+    { id: "contact", label: "05. Contact", icon: Mail },
   ]
 
   const scrollToSection = (sectionId: string) => {
@@ -48,33 +48,33 @@ export function Navigation({ activeSection }: NavigationProps) {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 hidden lg:block",
-          scrolled ? "py-4" : "py-6"
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300 hidden lg:block border-b",
+          scrolled ? "bg-background/95 backdrop-blur-sm border-border" : "bg-transparent border-transparent"
         )}
       >
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="glass-nav rounded-full px-6 py-3 flex items-center justify-between shadow-lg">
-            <div className="text-xl font-heading font-bold gradient-text">
-              SV
+        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="font-mono font-bold tracking-tighter text-foreground text-lg">
+            steve<span className="text-muted-foreground">_</span>veceto
+          </div>
+          <div className="flex items-center space-x-6">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={cn(
+                  "text-xs font-mono transition-all duration-200 uppercase tracking-widest",
+                  activeSection === item.id
+                    ? "text-foreground font-semibold"
+                    : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {activeSection === item.id && <span className="text-foreground mr-1">&gt;</span>}
+                {item.label.split('. ')[1]}
+              </button>
+            ))}
+            <div className="pl-4 border-l border-border">
+              <LanguageToggle />
             </div>
-            <div className="flex items-center space-x-1">
-              {navItems.map((item) => (
-                <Button
-                  key={item.id}
-                  variant="ghost"
-                  onClick={() => scrollToSection(item.id)}
-                  className={cn(
-                    "text-sm font-medium rounded-full px-4 transition-all duration-300",
-                    activeSection === item.id
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                  )}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </div>
-            <LanguageToggle />
           </div>
         </div>
       </motion.nav>
@@ -84,33 +84,32 @@ export function Navigation({ activeSection }: NavigationProps) {
         <LanguageToggle />
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
-            <Button variant="outline" size="sm" className="glass-nav border-border text-foreground">
+            <Button variant="outline" size="sm" className="bg-background/80 backdrop-blur-sm border-border text-foreground rounded-none">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-68 bg-background border-l border-border">
             <div className="pt-12">
-              <div className="text-xl font-heading font-bold gradient-text mb-8 px-4">
-                SV
+              <div className="font-mono font-bold tracking-tighter text-foreground text-lg mb-10 px-4">
+                steve<span className="text-muted-foreground">_</span>veceto
               </div>
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-4 px-4">
                 {navItems.map((item) => {
-                  const Icon = item.icon
+                  const isActive = activeSection === item.id
                   return (
-                    <Button
+                    <button
                       key={item.id}
-                      variant="ghost"
                       onClick={() => scrollToSection(item.id)}
                       className={cn(
-                        "justify-start gap-3 h-12 rounded-lg",
-                        activeSection === item.id
-                          ? "bg-primary text-primary-foreground"
-                          : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                        "text-left text-sm font-mono transition-all duration-200 uppercase tracking-widest",
+                        isActive
+                          ? "text-foreground font-semibold"
+                          : "text-muted-foreground"
                       )}
                     >
-                      <Icon className="h-5 w-5" />
-                      <span className="font-medium">{item.label}</span>
-                    </Button>
+                      {isActive && <span className="text-foreground mr-2">&gt;</span>}
+                      {item.label}
+                    </button>
                   )
                 })}
               </div>

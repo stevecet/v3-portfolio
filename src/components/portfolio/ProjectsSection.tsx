@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { getProjectsData } from "@/api/portfolio";
 import { useLanguage } from "@/contexts/useLanguage";
 
 interface Project {
   _id: string;
+  id?: number;
   title: string;
   description: string;
   technologies: string[];
@@ -23,7 +21,7 @@ interface Project {
 export function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
 
   useEffect(() => {
     const fetchProjectsData = async () => {
@@ -42,106 +40,104 @@ export function ProjectsSection() {
   }, []);
 
   if (loading) {
-    return (
-      <section id="projects" className="min-h-screen flex items-center justify-center">
-        <div className="animate-pulse flex items-center space-x-2">
-          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" />
-          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
-          <div className="h-4 w-4 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
-        </div>
-      </section>
-    );
+    return <section id="projects" className="min-h-screen" />;
   }
 
   return (
-    <section id="projects" className="py-24 sm:py-32 relative">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section id="projects" className="py-24 sm:py-32 relative bg-background border-t border-border">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
+          className="mb-24"
         >
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-5xl font-heading font-bold tracking-tight mb-4">
-              {t("projects.title")}
+          <div className="flex items-center gap-4 mb-4">
+            <span className="font-mono text-xs text-muted-foreground">03 /</span>
+            <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight">
+              Selected Work.
             </h2>
-            <div className="h-1 w-20 bg-primary rounded-full"></div>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project._id || index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group h-full"
-              >
-                <Card className="h-full border-border bg-card overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 flex flex-col">
-
-                  <CardContent className="p-6 sm:p-8 flex-1 flex flex-col">
-                    <div className="mb-4">
-                      {project.featured && (
-                        <span className="text-primary text-sm font-semibold tracking-wider uppercase mb-2 block">
-                          {t("projects.featured")}
-                        </span>
-                      )}
-                      <h3 className="text-2xl font-heading font-bold text-foreground group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                    </div>
-
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-6 flex-1">
-                      {language === "fr" && project.descriptionvf ? project.descriptionvf : project.description}
-                    </p>
-
-                    <div className="space-y-6 mt-auto">
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech) => (
-                          <Badge
-                            key={tech}
-                            variant="secondary"
-                            className="bg-secondary/50 font-medium text-xs py-1"
-                          >
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-
-                      <div className="flex gap-4 pt-4 border-t border-border">
-                        {project.githubUrl && (
-                          <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex-1">
-                            <Button
-                              variant="outline"
-                              className="w-full gap-2 group-hover:border-primary/50 transition-colors"
-                            >
-                              <Github className="h-4 w-4" />
-                              {t("projects.view_code")}
-                            </Button>
-                          </a>
-                        )}
-                        {project.liveUrl && (
-                          <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex-1">
-                            <Button
-                              className="w-full gap-2 transition-all"
-                            >
-                              <ExternalLink className="h-4 w-4" />
-                              {t("projects.view_demo")}
-                            </Button>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          <p className="font-mono text-sm text-muted-foreground max-w-2xl">
+            Some of the key projects I've built.
+          </p>
         </motion.div>
+
+        <div className="space-y-32">
+          {projects.map((project, index) => (
+            <ProjectCaseStudy key={project._id || project.id || index} project={project} index={index} language={language} />
+          ))}
+        </div>
       </div>
     </section>
   );
+}
+
+function ProjectCaseStudy({ project, index, language }: { project: Project; index: number; language: string }) {
+  const desc = language === "fr" && project.descriptionvf ? project.descriptionvf : project.description;
+  const isEven = index % 2 === 0;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      className={`flex flex-col lg:flex-row gap-12 lg:gap-16 items-center ${isEven ? "" : "lg:flex-row-reverse"}`}
+    >
+      {/* Project Info */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center">
+        <div className="font-mono text-xs text-muted-foreground mb-4">
+          {String(index + 1).padStart(2, '0')} — {project.category?.toUpperCase() || 'WEB APP'}
+        </div>
+        
+        <h3 className="text-3xl md:text-4xl font-sans font-bold mb-6">
+          {project.title}
+        </h3>
+        
+        <div className="bg-secondary/30 border border-border p-6 mb-8 font-mono text-sm leading-relaxed text-muted-foreground">
+          {desc}
+        </div>
+
+        <div className="mb-8">
+          <h4 className="font-mono text-xs font-bold tracking-widest uppercase mb-4 text-foreground">Technology</h4>
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.map(tech => (
+              <span key={tech} className="font-mono text-xs border border-border px-2 py-1 text-muted-foreground">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-center gap-6 mt-auto">
+          {project.githubUrl && (
+            <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 font-mono text-sm text-muted-foreground hover:text-foreground transition-colors group">
+              <Github className="w-4 h-4" />
+              <span className="group-hover:underline">Source</span>
+            </a>
+          )}
+          {project.liveUrl && (
+            <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 font-mono text-sm text-foreground hover:opacity-80 transition-opacity group border-b border-foreground pb-0.5">
+              <span>View Live</span>
+              <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          )}
+        </div>
+      </div>
+
+      {/* Project Image */}
+      <div className="w-full lg:w-1/2 group relative">
+        <div className="absolute inset-0 bg-primary/5 translate-x-4 translate-y-4 border border-border transition-transform group-hover:translate-x-2 group-hover:translate-y-2 -z-10" />
+        <div className="border border-border bg-card overflow-hidden relative aspect-video transition-all group-hover:-translate-y-1 group-hover:-translate-x-1">
+          <div className="absolute inset-0 bg-foreground/10 mix-blend-multiply group-hover:opacity-0 transition-opacity z-10" />
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 scale-105 group-hover:scale-100"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </motion.div>
+  )
 }

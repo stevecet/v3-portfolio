@@ -13,7 +13,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        heading: ["Outfit", "sans-serif"],
+        mono: ["'Fira Code'", "monospace"],
       },
       colors: {
         border: "hsl(var(--border))",
