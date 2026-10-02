@@ -25,12 +25,12 @@ export function Navigation({ activeSection }: NavigationProps) {
   }, [])
 
   const navItems = [
-    { id: "hero", label: "00. Home", icon: Home },
-    { id: "about", label: "01. About", icon: User },
-    { id: "experience", label: "02. Experience", icon: Briefcase },
-    { id: "projects", label: "03. Projects", icon: FolderOpen },
-    { id: "certifications", label: "04. Certs", icon: BadgeCheck },
-    { id: "contact", label: "05. Contact", icon: Mail },
+    { id: "hero", label: t("nav.home"), icon: Home },
+    { id: "about", label: t("nav.about"), icon: User },
+    { id: "experience", label: t("nav.experience"), icon: Briefcase },
+    { id: "projects", label: t("nav.projects"), icon: FolderOpen },
+    { id: "certifications", label: t("nav.certifications"), icon: BadgeCheck },
+    { id: "contact", label: t("nav.contact"), icon: Mail },
   ]
 
   const scrollToSection = (sectionId: string) => {

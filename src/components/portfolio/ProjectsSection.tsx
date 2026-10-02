@@ -21,7 +21,7 @@ interface Project {
 export function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
-  const { language } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const fetchProjectsData = async () => {
@@ -53,19 +53,19 @@ export function ProjectsSection() {
           className="mb-24"
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="font-mono text-xs text-muted-foreground">03 /</span>
+            <span className="font-mono text-xs text-muted-foreground">{t("nav.projects").split('.')[0]} /</span>
             <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight">
-              Selected Work.
+              {t("projects.title")}
             </h2>
           </div>
           <p className="font-mono text-sm text-muted-foreground max-w-2xl">
-            Some of the key projects I've built.
+            {t("projects.subtitle")}
           </p>
         </motion.div>
 
         <div className="space-y-32">
           {projects.map((project, index) => (
-            <ProjectCaseStudy key={project._id || project.id || index} project={project} index={index} language={language} />
+            <ProjectCaseStudy key={project._id || project.id || index} project={project} index={index} language={language} t={t} />
           ))}
         </div>
       </div>
@@ -73,7 +73,7 @@ export function ProjectsSection() {
   );
 }
 
-function ProjectCaseStudy({ project, index, language }: { project: Project; index: number; language: string }) {
+function ProjectCaseStudy({ project, index, language, t }: { project: Project; index: number; language: string; t: any }) {
   const desc = language === "fr" && project.descriptionvf ? project.descriptionvf : project.description;
   const isEven = index % 2 === 0;
 
@@ -99,7 +99,7 @@ function ProjectCaseStudy({ project, index, language }: { project: Project; inde
         </div>
 
         <div className="mb-8">
-          <h4 className="font-mono text-xs font-bold tracking-widest uppercase mb-4 text-foreground">Technology</h4>
+          <h4 className="font-mono text-xs font-bold tracking-widest uppercase mb-4 text-foreground">{t("projects.technology")}</h4>
           <div className="flex flex-wrap gap-2">
             {project.technologies.map(tech => (
               <span key={tech} className="font-mono text-xs border border-border px-2 py-1 text-muted-foreground">
@@ -113,12 +113,12 @@ function ProjectCaseStudy({ project, index, language }: { project: Project; inde
           {project.githubUrl && (
             <a href={project.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 font-mono text-sm text-muted-foreground hover:text-foreground transition-colors group">
               <Github className="w-4 h-4" />
-              <span className="group-hover:underline">Source</span>
+              <span className="group-hover:underline">{t("projects.source")}</span>
             </a>
           )}
           {project.liveUrl && (
             <a href={project.liveUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 font-mono text-sm text-foreground hover:opacity-80 transition-opacity group border-b border-foreground pb-0.5">
-              <span>View Live</span>
+              <span>{t("projects.view_live")}</span>
               <ExternalLink className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           )}

@@ -1,9 +1,10 @@
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/useLanguage";
+import { Typewriter } from "@/components/Typewriter";
 
 export function HeroSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -22,28 +23,39 @@ export function HeroSection() {
       <div className="container mx-auto px-0 sm:px-6 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Main Content Content */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left">
+          {/* Main Content */}
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-8 flex items-center gap-3"
+              className="mb-8 flex items-center justify-center lg:justify-start gap-3 w-full"
             >
-              <div className="h-[1px] w-8 bg-foreground"></div>
-              <span className="font-mono text-xs font-semibold tracking-widest text-muted-foreground uppercase">
-                Software Engineer &middot; Full Stack
-              </span>
+              <div className="h-[1px] w-8 bg-foreground hidden sm:block"></div>
+              <span className="font-mono text-xs font-semibold tracking-widest text-muted-foreground uppercase" dangerouslySetInnerHTML={{ __html: t("hero.whoami") }} />
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-8 leading-[1.1]"
+              className="text-4xl sm:text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-8 leading-[1.1] min-h-[140px] md:min-h-[160px]"
             >
-              I build software that <br className="hidden md:block" />
-              <span className="text-muted-foreground">solves real problems.</span>
+              {t("hero.headline_1")} <br className="hidden md:block" />
+              <span className="text-muted-foreground">
+                <Typewriter
+                  strings={[
+                    t("hero.headline_2"),
+                    language === 'fr' ? "offre de la valeur." : "delivers value.",
+                    language === 'fr' ? "évolue avec grâce." : "scales gracefully.",
+                    language === 'fr' ? "est performant." : "is highly performant."
+                  ]}
+                  typeSpeed={40}
+                  backSpeed={30}
+                  backDelay={1500}
+                  loop={true}
+                />
+              </span>
             </motion.h1>
 
             <motion.div
@@ -53,8 +65,7 @@ export function HeroSection() {
               className="text-base sm:text-lg text-muted-foreground max-w-xl mb-12 font-mono leading-relaxed"
             >
               <p>
-                Focusing on robust architecture, clean code, and scalable systems.
-                4+ years experience in building production-ready platforms.
+                {t("hero.description")}
               </p>
             </motion.div>
 
@@ -62,35 +73,37 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 mb-16 w-full sm:w-auto"
+              className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-16 w-full sm:w-auto"
             >
               <button
                 onClick={() => scrollToSection('projects')}
-                className="group flex items-center justify-center gap-3 bg-foreground text-background px-8 h-12 text-sm font-mono font-medium transition-transform hover:-translate-y-1"
+                className="group flex items-center justify-center gap-3 bg-foreground text-background px-8 h-12 text-sm font-mono font-medium transition-transform hover:-translate-y-1 w-full sm:w-auto"
               >
-                View projects
+                {t("hero.explore")}
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="flex items-center justify-center gap-3 border border-border bg-transparent px-8 h-12 text-sm font-mono font-medium hover:bg-secondary transition-colors"
+              <a
+                href={t("hero.resume_path")}
+                download={t("hero.resume_file")}
+                className="flex items-center justify-center gap-3 border border-border bg-transparent px-8 h-12 text-sm font-mono font-medium hover:bg-secondary transition-colors w-full sm:w-auto"
               >
-                Contact me
-              </button>
+                <Download className="h-4 w-4" />
+                {t("hero.resume") || "Download CV"}
+              </a>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex items-center gap-6"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6"
             >
-              <a href="https://github.com/stevecet/" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="https://github.com/stevecet/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </a>
-              <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
+              <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                 <Linkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </a>
@@ -98,10 +111,10 @@ export function HeroSection() {
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </a>
-              <div className="h-4 w-[1px] bg-border mx-2"></div>
-              <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
+              <div className="hidden sm:block h-4 w-[1px] bg-border mx-2"></div>
+              <div className="flex items-center justify-center gap-2 text-xs font-mono text-muted-foreground w-full sm:w-auto mt-2 sm:mt-0">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                AVAILABLE FOR WORK
+                {t("hero.status")}
               </div>
             </motion.div>
           </div>

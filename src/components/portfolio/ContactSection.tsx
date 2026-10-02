@@ -28,7 +28,7 @@ export function ContactSection() {
             className="mb-8"
           >
             <span className="font-mono text-sm tracking-widest text-muted-foreground uppercase border border-border px-4 py-2 bg-card">
-              05 / Next Steps
+              {t("contact.step")}
             </span>
           </motion.div>
 
@@ -38,8 +38,8 @@ export function ContactSection() {
             viewport={{ once: true }}
             className="text-4xl sm:text-6xl md:text-7xl font-sans font-bold tracking-tighter mb-6 uppercase"
           >
-            Have a problem <br/>
-            <span className="text-muted-foreground">worth solving?</span>
+            {t("contact.headline_1")} <br/>
+            <span className="text-muted-foreground">{t("contact.headline_2")}</span>
           </motion.h2>
 
           <motion.p
@@ -49,7 +49,7 @@ export function ContactSection() {
             viewport={{ once: true }}
             className="text-lg md:text-xl text-foreground font-mono mb-16 max-w-2xl"
           >
-            Let's build it.
+            {t("contact.headline_3")}
           </motion.p>
 
           <motion.div
@@ -63,13 +63,13 @@ export function ContactSection() {
               href="mailto:steveceto@gmail.com"
               className="bg-foreground text-background px-8 h-14 flex items-center justify-center font-mono text-sm font-medium transition-transform hover:-translate-y-1 w-full sm:w-auto"
             >
-              Contact Me
+              {t("contact.contact_me")}
             </a>
             <button 
               onClick={copyEmail}
               className="border border-border bg-transparent px-8 h-14 flex items-center justify-center font-mono text-sm font-medium hover:bg-secondary transition-colors w-full sm:w-auto"
             >
-              Copy Email
+              {t("contact.copy_email")}
             </button>
           </motion.div>
 

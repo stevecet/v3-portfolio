@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getAboutData } from "@/api/portfolio";
+import { useLanguage } from "@/contexts/useLanguage";
 
 export function AboutSection() {
   const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchAboutData = async () => {
@@ -25,23 +27,23 @@ export function AboutSection() {
   const narrative = [
     {
       step: "01",
-      title: "FOUNDATION",
-      text: "Started my journey exploring how systems work under the hood. Early exposure to low-level logic and algorithms laid the groundwork for my problem-solving approach today."
+      title: t("about.foundation"),
+      text: t("about.foundation_desc")
     },
     {
       step: "02",
-      title: "ENGINEERING",
-      text: "Moved into full-stack development, focusing on robust architecture and clean code. I specialize in building maintainable backends with Laravel and Node, paired with dynamic React and Next.js frontends."
+      title: t("about.engineering"),
+      text: t("about.engineering_desc")
     },
     {
       step: "03",
-      title: "QUALITY & TESTING",
-      text: "Recognized that good software requires rigorous verification. Gained extensive experience in QA, implementing end-to-end testing with Cypress, Appium, and Codeception to ensure reliability."
+      title: t("about.quality"),
+      text: t("about.quality_desc")
     },
     {
       step: "04",
-      title: "CURRENTLY",
-      text: "Based in Douala, Cameroon, building production-ready platforms. Focused on delivering scalable systems that solve real business problems without unnecessary complexity."
+      title: t("about.currently"),
+      text: t("about.currently_desc")
     }
   ];
 
@@ -57,17 +59,15 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="sticky top-32"
             >
-              <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight mb-6">
-                Engineering <br/> Identity.
-              </h2>
+              <h2 className="text-3xl md:text-5xl font-sans font-bold tracking-tight mb-6" dangerouslySetInnerHTML={{ __html: t("about.title").replace(" ", " <br/>") }} />
               <div className="font-mono text-sm text-muted-foreground leading-relaxed">
                 <p className="mb-4">
-                  My approach to software is pragmatic: prioritize performance, maintainability, and user experience over temporary trends.
+                  {t("about.subtitle")}
                 </p>
                 <div className="mt-8 flex flex-col gap-2 border-l border-border pl-4">
-                  <div className="text-foreground">LOCATION // <span className="text-muted-foreground">DOUALA, CAMEROON</span></div>
-                  <div className="text-foreground">EXPERIENCE // <span className="text-muted-foreground">4+ YEARS</span></div>
-                  <div className="text-foreground">FOCUS // <span className="text-muted-foreground">FULL STACK</span></div>
+                  <div className="text-foreground">LOCATION // <span className="text-muted-foreground">{t("about.location")}</span></div>
+                  <div className="text-foreground">EXPERIENCE // <span className="text-muted-foreground">{t("about.experience")}</span></div>
+                  <div className="text-foreground">FOCUS // <span className="text-muted-foreground">{t("about.focus")}</span></div>
                 </div>
               </div>
             </motion.div>
@@ -102,10 +102,10 @@ export function AboutSection() {
               viewport={{ once: true }}
               className="mt-20 pt-12 border-t border-border"
             >
-              <h3 className="font-mono text-xs font-bold tracking-widest uppercase mb-8">Core Technologies</h3>
+              <h3 className="font-mono text-xs font-bold tracking-widest uppercase mb-8">{t("about.core_tech")}</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-4 font-mono text-sm">
                 <div>
-                  <div className="text-muted-foreground mb-3 text-xs">FRONTEND</div>
+                  <div className="text-muted-foreground mb-3 text-xs">{t("about.frontend")}</div>
                   <ul className="space-y-2">
                     <li>React</li>
                     <li>Next.js</li>
@@ -114,7 +114,7 @@ export function AboutSection() {
                   </ul>
                 </div>
                 <div>
-                  <div className="text-muted-foreground mb-3 text-xs">BACKEND</div>
+                  <div className="text-muted-foreground mb-3 text-xs">{t("about.backend")}</div>
                   <ul className="space-y-2">
                     <li>Laravel</li>
                     <li>Node.js</li>
@@ -123,7 +123,7 @@ export function AboutSection() {
                   </ul>
                 </div>
                 <div>
-                  <div className="text-muted-foreground mb-3 text-xs">DATABASE</div>
+                  <div className="text-muted-foreground mb-3 text-xs">{t("about.database")}</div>
                   <ul className="space-y-2">
                     <li>MySQL</li>
                     <li>PostgreSQL</li>
@@ -131,7 +131,7 @@ export function AboutSection() {
                   </ul>
                 </div>
                 <div>
-                  <div className="text-muted-foreground mb-3 text-xs">QA & DEVOPS</div>
+                  <div className="text-muted-foreground mb-3 text-xs">{t("about.qa")}</div>
                   <ul className="space-y-2">
                     <li>Cypress</li>
                     <li>Appium</li>

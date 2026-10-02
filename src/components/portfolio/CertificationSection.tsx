@@ -16,13 +16,13 @@ export function CertificationSection() {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="font-mono text-xs text-muted-foreground">04 /</span>
+            <span className="font-mono text-xs text-muted-foreground">{t("nav.certifications").split('.')[0]} /</span>
             <h2 className="text-3xl md:text-4xl font-sans font-bold tracking-tight flex items-center">
-              Certifications.
+              {t("certifications.title")}
             </h2>
           </div>
           <p className="font-mono text-sm text-muted-foreground max-w-2xl">
-            Formal training and credentials.
+            {t("certifications.subtitle")}
           </p>
         </motion.div>
 
@@ -52,7 +52,7 @@ export function CertificationSection() {
               {/* Content side */}
               <div className="w-full sm:w-2/3 p-8 flex flex-col">
                 <div className="font-mono text-xs text-muted-foreground mb-4 flex justify-between items-center">
-                  <span>{cert.year || "CREDENTIAL"}</span>
+                  <span>{cert.year || t("certifications.credential")}</span>
                 </div>
                 
                 <h3 className="text-xl font-sans font-bold mb-4 leading-tight">

@@ -21,7 +21,7 @@ interface Experience {
 export function ExperienceSection() {
   const [experiences, setExperiences] = useState<Experience[]>([])
   const [loading, setLoading] = useState(true)
-  const { language } = useLanguage()
+  const { t, language } = useLanguage()
 
   useEffect(() => {
     const fetchExperienceData = async () => {
@@ -53,19 +53,19 @@ export function ExperienceSection() {
           className="mb-20"
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="font-mono text-xs text-muted-foreground">02 /</span>
+            <span className="font-mono text-xs text-muted-foreground">{t("nav.experience").split('.')[0]} /</span>
             <h2 className="text-3xl md:text-4xl font-sans font-bold tracking-tight">
-              Experience.
+              {t("experience.title")}
             </h2>
           </div>
           <p className="font-mono text-sm text-muted-foreground max-w-2xl">
-            A timeline of roles where I've contributed to engineering, scaled systems, and built products from the ground up.
+            {t("experience.subtitle")}
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 gap-12">
           {experiences.map((exp, index) => (
-            <ExperienceItem key={exp._id} exp={exp} index={index} language={language} />
+            <ExperienceItem key={exp._id} exp={exp} index={index} language={language} t={t} />
           ))}
         </div>
       </div>
@@ -73,7 +73,7 @@ export function ExperienceSection() {
   )
 }
 
-function ExperienceItem({ exp, index, language }: { exp: Experience, index: number, language: string }) {
+function ExperienceItem({ exp, index, language, t }: { exp: Experience, index: number, language: string, t: any }) {
   const [isHovered, setIsHovered] = useState(false)
   const desc = language === "fr" && exp.descriptionvf ? exp.descriptionvf : exp.description;
   const pos = language === "fr" && exp.positionvf ? exp.positionvf : exp.position;
@@ -89,7 +89,7 @@ function ExperienceItem({ exp, index, language }: { exp: Experience, index: numb
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="md:w-1/4 flex flex-col font-mono text-sm">
-        <span className="text-foreground font-bold">{exp.startDate} - {exp.current ? "Present" : exp.endDate}</span>
+        <span className="text-foreground font-bold">{exp.startDate} - {exp.current ? t("experience.present") : exp.endDate}</span>
         <span className="text-muted-foreground mt-2">{exp.location}</span>
         {exp.website && (
           <a href={exp.website} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground mt-4 inline-flex items-center gap-2 transition-colors">
@@ -134,7 +134,7 @@ function ExperienceItem({ exp, index, language }: { exp: Experience, index: numb
 
         {!isHovered && exp.technologies && (
            <div className="flex items-center gap-2 mt-4">
-             <span className="font-mono text-[10px] text-muted-foreground opacity-50 uppercase tracking-widest">Hover to view tech stack</span>
+             <span className="font-mono text-[10px] text-muted-foreground opacity-50 uppercase tracking-widest">{t("experience.hover_tech")}</span>
            </div>
         )}
       </div>
