@@ -57,15 +57,15 @@ export const getExperienceData = () => {
           {
             _id: "1",
             company: "Maviance",
-            position: "Software Engineer Intern",
+            position: "Software Engineer",
             location: "Douala, Cameroon",
             startDate: "Oct 2025",
             endDate: "",
             current: true,
             description: [
-              "QA & Automated Testing: Executed comprehensive functional, regression, and integration testing while implementing automated testing via Cypress/Codeception and tracking defects in JIRA.",
-              "Backend Development: Built and optimized backend architectures and third-party API connectors using PHP and Go.",
-              "Frontend Development: Developed responsive, seamless user interfaces for web and mobile applications using React and React Native.",
+              "QA & Automated Testing: Executing comprehensive functional, regression, and integration testing while implementing automated testing via Cypress/Codeception and tracking defects in JIRA.",
+              "Backend Development: Building and optimizing backend architectures and third-party API connectors using Symfony and Go.",
+              "Frontend Development: Developing responsive, seamless user interfaces for web and mobile applications using React and React Native.",
               "System Stability & Documentation: Ensured system stability by writing unit tests, debugging full-stack performance issues, and documenting APIs and UI components."
             ],
             descriptionvf: [
@@ -77,7 +77,7 @@ export const getExperienceData = () => {
             technologies: [
               "React",
               "React Native",
-              "PHP",
+              "Symfony",
               "Go",
               "Cypress",
               "Codeception",
@@ -206,7 +206,7 @@ export const getProjectsData = () => {
       resolve({
         projects: [
           {
-            id: 1,
+            id: 4,
             title: "Project Task Management platform",
             description:
               "Productivity-focused task management web app where users can create, organize, and track tasks across multiple projects. It includes features like deadlines, priorities, categories, task status (to-do, in progress, done), and collaborative user assignment.",
@@ -271,7 +271,7 @@ export const getProjectsData = () => {
             category: "Web App",
           },
           {
-            id: 4,
+            id: 1,
             title: "Booking System",
             name: "Bookify",
             description:
@@ -279,7 +279,7 @@ export const getProjectsData = () => {
             descriptionvf:
               "Plateforme de réservation de rendez-vous adaptée aux services comme les salons de beauté, les consultations ou les cours. Les utilisateurs peuvent consulter les disponibilités, réserver des créneaux, recevoir des rappels et gérer leurs réservations. Les administrateurs peuvent configurer les horaires et les types de services.",
             image:
-              "https://unsplash.com/photos/white-printer-paper-on-brown-wooden-table-DItYlc26zVI",
+              "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
             technologies: ["Next", "MongoDB", "Express", "Node"],
             liveUrl: "https://reservo-steveceto.vercel.app",
             githubUrl: "https://github.com/stevecet/reservo",
