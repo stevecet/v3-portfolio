@@ -109,8 +109,8 @@ export function AboutSection() {
                   <ul className="space-y-2">
                     <li>React</li>
                     <li>Next.js</li>
-                    <li>TypeScript</li>
-                    <li>Tailwind</li>
+                    <li>React Native</li>
+                    <li>Angular</li>
                   </ul>
                 </div>
                 <div>
@@ -119,7 +119,7 @@ export function AboutSection() {
                     <li>Laravel</li>
                     <li>Node.js</li>
                     <li>Symfony</li>
-                    <li>Express</li>
+                    <li>Gin</li>
                   </ul>
                 </div>
                 <div>
@@ -136,7 +136,7 @@ export function AboutSection() {
                     <li>Cypress</li>
                     <li>Appium</li>
                     <li>Codeception</li>
-                    <li>Docker</li>
+                    <li>Maestro</li>
                   </ul>
                 </div>
               </div>
