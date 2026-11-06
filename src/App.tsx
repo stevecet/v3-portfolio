@@ -7,7 +7,7 @@ import { BlankPage } from "./pages/BlankPage"
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="ui-theme">
+    <ThemeProvider defaultTheme="light" storageKey="steveceto-theme">
       <LanguageProvider>
         <Router>
           <Routes>

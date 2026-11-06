@@ -1,321 +1,558 @@
+export interface ProjectItem {
+  id: string | number;
+  slug: string;
+  title: string;
+  subtitle: string;
+  subtitlevf?: string;
+  description: string;
+  descriptionvf?: string;
+  problem: string;
+  problemvf?: string;
+  architecture: string;
+  architecturevf?: string;
+  challenges: string;
+  challengesvf?: string;
+  testing: string;
+  testingvf?: string;
+  technologies: string[];
+  category: string;
+  categoryvf?: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  featured: boolean;
+  metrics?: { label: string; value: string }[];
+}
+
+export interface ExperienceItem {
+  _id: string;
+  company: string;
+  position: string;
+  positionvf?: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  current: boolean;
+  type: string;
+  description: string[];
+  descriptionvf?: string[];
+  highlights?: string[];
+  technologies: string[];
+  website?: string;
+}
+
+export interface CertificationItem {
+  id: number;
+  title: string;
+  titlevf?: string;
+  issuer: string;
+  year: string;
+  description: string;
+  descriptionvf?: string;
+  technologies: string[];
+  liveUrl?: string;
+}
+
 export const getAboutData = () => {
-  // Mocking the response
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
+  return Promise.resolve({
+    name: "Gilchrist Steve Aurel Veceto",
+    shortName: "Steve Veceto",
+    role: "Software Engineer & Full-Stack Developer",
+    location: "Douala, Cameroon",
+    experienceYears: "4+",
+    description: [
+      "I am a software engineer focused on building robust full-stack architectures, high-performance web applications, and reliable automated testing systems.",
+      "My engineering philosophy centers on architectural clarity, resilient error boundaries, and pragmatic tooling. I combine modern frontend design systems (React, Next.js, TypeScript) with robust backend engines (Laravel, Symfony, Go, Node.js) and rigorous QA automation (Cypress, Codeception).",
+      "Whether engineering skills-assessment platforms in production or building mission-critical API connectors, I deliver software that is measurable, maintainable, and engineered to scale."
+    ],
+    descriptionvf: [
+      "Je suis un ingénieur logiciel dédié à la conception d'architectures full-stack robustes, d'applications web haute performance et de systèmes de tests automatisés fiables.",
+      "Ma philosophie d'ingénierie repose sur la clarté architecturale, la résilience et des outils pragmatiques. J'associe des front-ends modernes (React, Next.js, TypeScript) à des back-ends robustes (Laravel, Symfony, Go, Node.js) et à une assurance qualité rigoureuse (Cypress, Codeception).",
+      "Qu'il s'agisse de concevoir des plateformes d'évaluation des compétences en production ou des connecteurs d'API critiques, je conçois des logiciels mesurables, maintenables et bâtis pour durer."
+    ],
+    skills: [
+      "TypeScript", "JavaScript", "React", "Next.js", "React Native", "Tailwind CSS",
+      "Laravel", "PHP", "Symfony", "Go", "Node.js", "Express.js",
+      "PostgreSQL", "MySQL", "MongoDB",
+      "Cypress", "Codeception", "Appium", "Docker", "Git / GitHub Actions", "REST APIs"
+    ]
+  });
+};
+
+export const getExperienceData = (): Promise<{ experiences: ExperienceItem[] }> => {
+  return Promise.resolve({
+    experiences: [
+      {
+        _id: "maviance",
+        company: "Maviance",
+        position: "Software Engineer",
+        positionvf: "Ingénieur Logiciel",
+        location: "Douala, Cameroon",
+        startDate: "Oct 2025",
+        endDate: "",
+        current: true,
+        type: "Engineering & QA",
         description: [
-          "Hello! I'm Steveceto, a software engineer based in Douala who enjoys building things that live on the internet. I develop websites and web apps that provide intuitive, user friendly interfaces with efficient and modern backends.",
-          "I work on a wide variety of interesting and meaningful projects on a daily basis.",
-          "Here are a few technologies I've been working with recently:",
+          "QA & Automated Testing: Orchestrated end-to-end regression and integration testing using Cypress and Codeception; streamlined defect lifecycles and tracking within JIRA.",
+          "Backend & Connectors: Architected and optimized resilient backend services and third-party financial/payment API connectors utilizing Symfony (PHP) and Go.",
+          "Frontend & Cross-Platform: Built responsive, high-performance interfaces for web and mobile platforms with React and React Native.",
+          "System Reliability: Authored unit tests, profiled bottleneck latency across full-stack services, and created comprehensive OpenAPI documentation."
         ],
         descriptionvf: [
-          "Bonjour ! Je suis Steveceto, un ingénieur logiciel basé à Douala qui aime concevoir des solutions sur le web. Je développe des sites et des applications web qui offrent des interfaces utilisateur intuitives et conviviales, soutenues par des backends efficaces et modernes.",
-          "Je travaille quotidiennement sur une grande variété de projets intéressants et significatifs.",
-          "Voici quelques technologies avec lesquelles j'ai travaillé récemment :"
+          "Assurance Qualité & Tests : Conduite de suites de tests de régression et d'intégration de bout en bout avec Cypress et Codeception ; gestion rigoureuse des anomalies sur JIRA.",
+          "Développement Backend : Conception et optimisation de services backend et connecteurs d'API tiers avec Symfony (PHP) et Go.",
+          "Frontend & Mobile : Développement d'interfaces utilisateur réactives et fluides pour applications web et mobiles via React et React Native.",
+          "Fiabilité du Système : Écriture de tests unitaires, analyse des goulots d'étranglement et documentation complète des APIs et composants."
         ],
-        skills: [
-          "JavaScript",
-          "TypeScript",
-          "Python",
-          "SQL",
+        technologies: [
+          "React", "React Native", "Symfony", "Go", "Cypress", "Codeception", "REST APIs", "JIRA", "Git"
+        ],
+        website: "https://maviance.com"
+      },
+      {
+        _id: "esmartlearning",
+        company: "Esmartlearning",
+        position: "Full Stack Developer & Product Designer",
+        positionvf: "Développeur Full Stack & Product Designer",
+        location: "Douala, Cameroon",
+        startDate: "Dec 2024",
+        endDate: "",
+        current: true,
+        type: "Production Platform",
+        description: [
+          "End-to-End Product Engineering: Planned sprint architectures, budgetary constraints, and delivered the skills-assessment and test management platform.",
+          "Backend Engine: Engineered a modular Laravel REST API governing multi-tenant authentication, automated timed assessments, and grade calculation.",
+          "Frontend Architecture: Developed a responsive React SPA with Material UI and real-time candidate analytics visualizers using Recharts.",
+          "Operations & Maintenance: Established continuous deployment pipelines on Vercel with automated build checks and performance monitoring."
+        ],
+        descriptionvf: [
+          "Ingénierie Produit de Bout en Bout : Planification des sprints agiles, cadrage budgétaire et livraison de la plateforme d'évaluation des compétences.",
+          "Moteur Backend : Développement d'une API REST modulaire avec Laravel pour l'authentification multi-utilisateurs et la gestion automatisée des tests chronométrés.",
+          "Interface & Visualisation : Intégration front-end avec React, Material UI et tableaux de bord analytiques interactifs propulsés par Recharts.",
+          "Déploiement & Maintenance : Déploiement continu sur Vercel avec vérification des builds et haute disponibilité opérationnelle."
+        ],
+        technologies: [
+          "React", "Laravel", "MySQL", "Material UI", "Recharts", "Axios", "Vercel", "Figma"
+        ],
+        website: "https://esmartlearning.tech"
+      },
+      {
+        _id: "online-africa",
+        company: "Online Africa",
+        position: "Network & IT Support Engineer",
+        positionvf: "Ingénieur Réseau & Support IT",
+        location: "Douala, Cameroon",
+        startDate: "Jan 2024",
+        endDate: "Oct 2025",
+        current: false,
+        type: "Infrastructure",
+        description: [
+          "Enterprise Infrastructure: Proactively monitored and maintained business-critical IT systems and internal network topologies to minimize operational downtime.",
+          "Rapid Troubleshooting: Resolved complex hardware, networking, and application disruptions with rapid incident mitigation protocols.",
+          "Root-Cause Documentation: Authored incident post-mortems, preventive maintenance protocols, and infrastructure topologies."
+        ],
+        descriptionvf: [
+          "Infrastructure d'Entreprise : Supervision proactive et maintenance des systèmes IT et infrastructures réseaux pour assurer une disponibilité maximale.",
+          "Résolution d'Incidents : Diagnostic rapide et résolution des pannes matérielles, logicielles et perturbations réseaux complexes.",
+          "Documentation Technique : Rédaction de rapports d'analyse de causes profondes (post-mortems) et guides de maintenance préventive."
+        ],
+        technologies: [
+          "Linux Shell", "Enterprise Networks", "Diagnostics", "Incident Logging", "Security Protocols"
+        ]
+      },
+      {
+        _id: "interstation",
+        company: "Interstation Connect",
+        position: "Frontend Developer",
+        positionvf: "Développeur Frontend",
+        location: "Douala, Cameroon",
+        startDate: "Aug 2024",
+        endDate: "Dec 2024",
+        current: false,
+        type: "Frontend Engineering",
+        description: [
+          "High-Fidelity Implementation: Transformed complex Figma UI specifications into pixel-perfect, accessible React components.",
+          "API Integration & State: Implemented asynchronous state orchestration with Axios and custom React hooks.",
+          "Deployment Workflow: Configured Vercel production deployment and caching strategies."
+        ],
+        descriptionvf: [
+          "Intégration Haute-Fidélité : Transformation des maquettes Figma en composants React accessibles et fidèles au pixel près.",
+          "Consommation d'APIs : Gestion des flux asynchrones avec Axios et des hooks personnalisés.",
+          "Cycle de Livraison : Configuration du déploiement Vercel et optimisation des temps de chargement."
+        ],
+        technologies: [
+          "React", "JavaScript", "Material UI", "Axios", "Vercel", "Figma"
+        ]
+      },
+      {
+        _id: "uwaco",
+        company: "UWACO",
+        position: "Frontend Developer Intern",
+        positionvf: "Stagiaire Développeur Frontend",
+        location: "Douala, Cameroon",
+        startDate: "Jul 2023",
+        endDate: "Nov 2023",
+        current: false,
+        type: "Frontend Engineering",
+        description: [
+          "Fleet Tracking UI: Designed and integrated Angular components for a live vehicle telematics and tracking application.",
+          "Asset Optimization: Structured client-side asset caching and data parsing to accelerate map rendering speeds.",
+          "Video Playback Engine: Implemented historical telemetry route playback based on live GPS tracking coordinate streams."
+        ],
+        descriptionvf: [
+          "Suivi Télématique : Conception et intégration de l'interface Angular pour le suivi et la géolocalisation de véhicules en temps réel.",
+          "Optimisation des Ressources : Mise en cache et traitement des données pour accélérer l'affichage cartographique.",
+          "Rejeu de Trajets : Intégration d'un système de relecture vidéo des parcours basé sur les flux de coordonnées GPS."
+        ],
+        technologies: [
+          "Angular", "SCSS", "Material Angular", "REST APIs", "Nextcloud"
+        ]
+      },
+      {
+        _id: "digital-investment",
+        company: "Digital Investment",
+        position: "Web Designer & Developer",
+        positionvf: "Web Designer & Développeur",
+        location: "Douala, Cameroon",
+        startDate: "Nov 2021",
+        endDate: "Aug 2022",
+        current: false,
+        type: "Design & CMS",
+        description: [
+          "Custom CMS Solutions: Designed and deployed dynamic WordPress web portals for diverse commercial clients.",
+          "Brand & Visual Identity: Created digital assets, marketing banners, and user flow wireframes in Photoshop and Figma."
+        ],
+        descriptionvf: [
+          "Solutions CMS sur Mesure : Conception et déploiement de sites vitrines dynamiques sous WordPress pour divers clients.",
+          "Identité Visuelle : Création de chartes graphiques, bannières et maquettes ergonomiques sous Photoshop et Figma."
+        ],
+        technologies: [
+          "WordPress", "Elementor", "Photoshop", "Figma", "CSS3"
+        ]
+      }
+    ]
+  });
+};
+
+export const getProjectsData = (): Promise<{ projects: ProjectItem[] }> => {
+  return Promise.resolve({
+    projects: [
+      {
+        id: "esmartlearning",
+        slug: "esmartlearning",
+        title: "Esmartlearning Platform",
+        subtitle: "Production Skills-Assessment & Test Management Engine",
+        subtitlevf: "Moteur de Gestion et d'Évaluation des Compétences en Production",
+        description:
+          "Production assessment platform allowing educators and organizations to create, schedule, and grade technical evaluations with real-time test timing, automated scoring, and performance analytics.",
+        descriptionvf:
+          "Plateforme d'évaluation en production permettant aux formateurs et organisations de concevoir, planifier et noter des tests techniques avec chronométrage temps réel, notation automatique et analyses de performance.",
+        problem:
+          "Educational institutes and remote hiring teams struggled with fragmented assessment tools, lack of strict anti-cheating timers, and high manual grading overhead for bulk cohorts.",
+        problemvf:
+          "Les instituts de formation et recruteurs peinaient avec des outils d'évaluation fragmentés, l'absence de minuteurs fiables et une charge colossale de correction manuelle.",
+        architecture:
+          "Engineered with a decoupled architecture: a Laravel REST API with MySQL relational schema, JWT auth tokens, and automated cron workers, paired with a React SPA utilizing Material UI and Recharts dashboards.",
+        architecturevf:
+          "Architecture découplée : API REST Laravel avec schéma relationnel MySQL, jetons JWT et workers automatisés, couplée à un front-end React avec tableaux de bord Recharts.",
+        challenges:
+          "Ensured atomic test submissions during unstable network connections with local session fallbacks, and optimized heavy analytical queries for student grade distribution graphs.",
+        challengesvf:
+          "Garantie de soumission atomique des réponses en cas de coupure réseau via persistance locale, et optimisation des requêtes analytiques sur les cohortes d'étudiants.",
+        testing:
+          "API endpoint verification via PHPUnit feature tests; critical student test-taking and grading flows validated with Cypress end-to-end automation.",
+        testingvf:
+          "Validation des routes d'API par tests de fonctionnalités PHPUnit ; parcours critique de passation d'examens automatisé de bout en bout avec Cypress.",
+        technologies: [
           "React",
-          "React Native",
-          "Angular",
-          "Next.js",
-          "Tailwind",
           "Laravel",
-          "Express.js",
-          "Symfony",
+          "MySQL",
+          "Material UI",
+          "Recharts",
+          "Axios",
+          "Vercel",
+          "PHP"
+        ],
+        category: "Production Platform",
+        categoryvf: "Plateforme en Production",
+        liveUrl: "https://esmartlearning.tech",
+        featured: true,
+        metrics: [
+          { label: "Deployment", value: "Production" },
+          { label: "Architecture", value: "Decoupled REST" },
+          { label: "Testing", value: "PHPUnit + Cypress" }
+        ]
+      },
+      {
+        id: "taskify",
+        slug: "taskify",
+        title: "Taskify",
+        subtitle: "Multi-Project Task Management & Collaboration Platform",
+        subtitlevf: "Plateforme de Gestion de Tâches & Collaboration Multi-Projets",
+        description:
+          "High-productivity task management web app enabling users to organize multi-project backlogs, configure priorities, set deadline alerts, and track collaborative sprints from to-do to completion.",
+        descriptionvf:
+          "Application web de productivité permettant d'organiser des backlogs multi-projets, de configurer les priorités, de programmer des alertes d'échéances et de suivre l'avancement des sprints.",
+        problem:
+          "Teams needed an agile task tracker that wasn't bloated with enterprise complexity, focusing on instant status transitions, responsive layout, and zero learning curve.",
+        problemvf:
+          "Les équipes recherchaient un gestionnaire de tâches agile, fluide, sans la lourdeur des outils d'entreprise, offrant des changements de statuts instantanés et une prise en main immédiate.",
+        architecture:
+          "MERN stack implementation. Express.js REST API with MongoDB aggregation pipelines for task categorizations and deadline querying. Responsive frontend using React, Tailwind CSS, and Material UI components.",
+        architecturevf:
+          "Stack MERN. API REST Express.js avec pipelines d'agrégation MongoDB pour la catégorisation et les requêtes d'échéances. Front-end réactif combinant React, Tailwind CSS et Material UI.",
+        challenges:
+          "Optimistic UI updates for drag/drop status alterations, ensuring client state syncs seamlessly with database state while handling potential network dropouts.",
+        challengesvf:
+          "Mises à jour optimistes de l'UI lors des changements de statut pour éliminer les temps de latence ressentis, avec synchronisation résiliente côté base de données.",
+        testing:
+          "End-to-end workflow validation using Cypress for project creation, task assignment, and state changes.",
+        testingvf:
+          "Validation des parcours complets avec Cypress pour la création de projets, l'attribution des tâches et les transitions d'état.",
+        technologies: [
+          "React",
+          "Node.js",
+          "Express",
           "MongoDB",
-          "Cypress",
-          "Appium",
-          "Maestro",
-          "Codeception",
+          "Tailwind CSS",
+          "Material UI",
+          "Cypress"
         ],
-        profileImage: "/profile.jpg",
-      });
-    }, 500);
-  });
-  // Uncomment the below lines to make an actual API call
-  // try {
-  //   return await api.get('/api/portfolio/about');
-  // } catch (error) {
-  //   throw new Error(error?.response?.data?.error || error.message);
-  // }
-};
-
-// Description: Get experience data
-// Endpoint: GET /api/portfolio/experience
-// Request: {}
-// Response: { experiences: Array<{ _id: string, company: string, position: string, location: string, startDate: string, endDate: string, current: boolean, description: string[], technologies: string[], website?: string }> }
-export const getExperienceData = () => {
-  // Mocking the response
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        experiences: [
-          {
-            _id: "1",
-            company: "Maviance",
-            position: "Software Engineer",
-            location: "Douala, Cameroon",
-            startDate: "Oct 2025",
-            endDate: "",
-            current: true,
-            description: [
-              "QA & Automated Testing: Executing comprehensive functional, regression, and integration testing while implementing automated testing via Cypress/Codeception and tracking defects in JIRA.",
-              "Backend Development: Building and optimizing backend architectures and third-party API connectors using Symfony and Go.",
-              "Frontend Development: Developing responsive, seamless user interfaces for web and mobile applications using React and React Native.",
-              "System Stability & Documentation: Ensured system stability by writing unit tests, debugging full-stack performance issues, and documenting APIs and UI components."
-            ],
-            descriptionvf: [
-              "Assurance Qualité & Tests Automatisés : Exécution de tests fonctionnels, de régression et d'intégration complets, implémentation de tests automatisés via Cypress/Codeception et suivi des défauts dans JIRA.",
-              "Développement Backend : Conception et optimisation d'architectures backend et de connecteurs d'API tiers en utilisant PHP et Go.",
-              "Développement Frontend : Création d'interfaces utilisateur réactives et fluides pour des applications web et mobiles avec React et React Native.",
-              "Stabilité du Système & Documentation : Garantie de la stabilité du système par l'écriture de tests unitaires, le débogage full-stack et la documentation des API et composants UI."
-            ],
-            technologies: [
-              "React",
-              "React Native",
-              "Symfony",
-              "Go",
-              "Cypress",
-              "Codeception",
-              "JIRA"
-            ],
-          },
-          {
-            _id: "2",
-            company: "Esmartlearning",
-            position: "Full stack developer and product designer",
-            positionvf: "Développeur Full Stack et Product Designer",
-            location: "Douala, Cameroon",
-            startDate: "Dec 2024",
-            endDate: "",
-            current: true,
-            description: [
-              "Project planning, budgeting, and coordination of agile sprints",
-              "UI/UX design with Figma",
-              "Developed a REST API with Laravel for user and test management",
-              "Integrated front-end with React.js and Material UI",
-              "Deployed the platform on Vercel and handled maintenance",
-            ],
-            descriptionvf: [
-              "Planification du projet, budgétisation et coordination des sprints agiles",
-              "Conception UI/UX avec Figma",
-              "Développement d'une API REST avec Laravel pour la gestion des utilisateurs et des tests",
-              "Intégration du front-end avec React.js et Material UI",
-              "Déploiement de la plateforme sur Vercel et gestion de la maintenance"
-            ],
-            technologies: [
-              "React",
-              "Material UI",
-              "Recharts",
-              "Axios",
-              "Laravel",
-              "MySQL",
-            ],
-            website: "https://esmartlearning.tech",
-          },
-          {
-            _id: "3",
-            company: "Interstation",
-            position: "Frontend Developer",
-            positionvf: "Développeur Frontend",
-            location: "Douala, Cameroon",
-            startDate: "August 2024",
-            endDate: "Dec 2024",
-            current: false,
-            description: [
-              "Developed UI with React.js and Material UI",
-              "Implemented full UI based on provided designs",
-              "Deployed the app on Vercel and ensured maintenance",
-            ],
-            descriptionvf: [
-              "Développement de l'interface utilisateur avec React.js et Material UI",
-              "Implémentation de l'intégralité de l'interface utilisateur basée sur les maquettes fournies",
-              "Déploiement de l'application sur Vercel et maintenance de celle-ci"
-            ],
-            technologies: ["Figma", "React.js", "Material UI", "Axios"],
-            // website: "https://upstatement.com",
-          },
-          {
-            _id: "4",
-            company: "UWACO",
-            position: "Frontend Developer Intern",
-            positionvf: "Stagiaire Développeur Frontend",
-            location: "Douala, Cameroon",
-            startDate: "Jul 2023",
-            endDate: "Nov 2023",
-            current: false,
-            description: [
-              "Designed and integrated Angular UI for a vehicle tracking application",
-              "Optimized image and asset caching for better performance",
-              "Implemented a video replay system based on live vehicle data",
-            ],
-            descriptionvf: [
-              "Conception et intégration de l'interface utilisateur Angular pour une application de suivi de véhicules",
-              "Optimisation de la mise en cache des images et des ressources pour de meilleures performances",
-              "Implémentation d'un système de relecture vidéo basé sur les données de localisation en direct"
-            ],
-            technologies: ["Angular", "SCSS", "Material Angular", "Nexcloud"],
-            // website: "https://apple.com",
-          },
-          {
-            _id: "5",
-            company: "Digital Investment",
-            position: "Web designer",
-            positionvf: "Web designer",
-            location: "Douala, Cameroon",
-            startDate: "Nov 2021",
-            endDate: "Aug 2022",
-            current: false,
-            description: [
-              "Designed and developed dynamic showcase websites with WordPress",
-              "Created marketing visuals (banners, flyers) with Adobe Photoshop",
-              "Impact: Modernized and improved UX for various client websites",
-            ],
-            descriptionvf: [
-              "Conception et développement de sites vitrines dynamiques avec WordPress",
-              "Création de visuels marketing (bannières, flyers) avec Adobe Photoshop",
-              "Impact : Modernisation et amélioration de l'expérience utilisateur (UX) pour divers sites clients"
-            ],
-            technologies: ["Wordpress", "Elementor", "Photoshop", "Figma"],
-            // website: "https://apple.com",
-          },
+        category: "Web Application",
+        categoryvf: "Application Web",
+        liveUrl: "https://taskify-steveceto.vercel.app/",
+        githubUrl: "https://github.com/stevecet/taskify",
+        featured: true,
+        metrics: [
+          { label: "Stack", value: "MERN" },
+          { label: "E2E Tests", value: "Cypress" },
+          { label: "Deploy", value: "Vercel" }
+        ]
+      },
+      {
+        id: "eventory",
+        slug: "eventory",
+        title: "Eventory",
+        subtitle: "Event Discovery, Spatial Mapping & RSVP Engine",
+        subtitlevf: "Moteur de Découverte d'Événements, Cartographie & RSVP",
+        description:
+          "Comprehensive event discovery and management system. Attendees browse events by geo-location, category, and schedule, with instant RSVP ticketing and automated calendar reminder integrations.",
+        descriptionvf:
+          "Système complet de découverte et gestion d'événements. Les participants explorent les événements par géolocalisation, catégorie et date, avec réservation RSVP immédiate et rappels d'agenda.",
+        problem:
+          "Event hosts struggled to balance RSVP capacity limits, interactive map discovery, and attendee communications across disparate channels.",
+        problemvf:
+          "Les organisateurs rencontraient des difficultés pour gérer les quotas d'inscriptions, la localisation cartographique interactive et la communication avec les participants.",
+        architecture:
+          "Modern full-stack hybrid: Next.js with Shadcn/Tailwind UI on the frontend, interfacing with a Python Flask REST backend backed by PostgreSQL relational database storage for relational ACID transactions.",
+        architecturevf:
+          "Hybride moderne : Next.js avec Shadcn/Tailwind côté front-end, interfacé avec un back-end Python Flask et une base de données relationnelle PostgreSQL garantissant les transactions ACID.",
+        challenges:
+          "Preventing race-condition overbooking during high-traffic registration windows using PostgreSQL row-level locks and transactional isolation.",
+        challengesvf:
+          "Prévention des surréservations lors des pics d'inscriptions via des verrous de lignes PostgreSQL et l'isolation des transactions.",
+        testing:
+          "Postman collection contract tests combined with Next.js component unit tests and registration simulation scripts.",
+        testingvf:
+          "Tests de contrats d'API via Postman et tests unitaires des composants Next.js pour valider le flux de réservation.",
+        technologies: [
+          "Next.js",
+          "Python / Flask",
+          "PostgreSQL",
+          "Shadcn UI",
+          "Tailwind CSS",
+          "Lucide Icons"
         ],
-      });
-    }, 500);
-  });
-  // Uncomment the below lines to make an actual API call
-  // try {
-  //   return await api.get('/api/portfolio/experience');
-  // } catch (error) {
-  //   throw new Error(error?.response?.data?.error || error.message);
-  // }
-};
-
-// Description: Get projects data
-// Endpoint: GET /api/portfolio/projects
-// Request: {}
-// Response: { projects: Array<{ _id: string, title: string, description: string, technologies: string[], category: string, image: string, liveUrl?: string, githubUrl?: string, featured: boolean }> }
-export const getProjectsData = () => {
-  // Mocking the response
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        projects: [
-          {
-            id: 4,
-            title: "Project Task Management platform",
-            description:
-              "Productivity-focused task management web app where users can create, organize, and track tasks across multiple projects. It includes features like deadlines, priorities, categories, task status (to-do, in progress, done), and collaborative user assignment.",
-            descriptionvf:
-              "Application web de gestion de tâches orientée productivité, permettant aux utilisateurs de créer, organiser et suivre des tâches réparties sur plusieurs projets. Elle propose des fonctionnalités comme la gestion des échéances, des priorités, des catégories, des statuts de tâches (à faire, en cours, terminé) et l’attribution de tâches à plusieurs utilisateurs.",
-            image:
-              "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800&h=400&fit=crop",
-            technologies: [
-              "Reactjs",
-              "Material UI",
-              "Tailwind",
-              "Express",
-              "MongoDB",
-              "Node",
-            ],
-            liveUrl: "https://taskify-steveceto.vercel.app/",
-            githubUrl: "https://github.com/stevecet/taskify",
-            featured: true,
-            category: "Web App",
-          },
-          {
-            id: 2,
-            title: "Event Management System",
-            description:
-              "Platform for organizing and discovering events. Users can browse upcoming events by category or location, RSVP, and receive reminders. Admins can create events with descriptions, locations (map-based), and manage attendees.",
-            descriptionvf:
-              "Application de gestion et de découverte d'événements. Les utilisateurs peuvent parcourir les événements par catégorie ou par lieu, s’inscrire et recevoir des rappels. Les organisateurs peuvent créer des événements avec des descriptions, des dates, une carte de localisation et gérer les participants.",
-            image:
-              "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?w=800&h=400&fit=crop",
-            technologies: [
-              "Next",
-              "Shadcn",
-              "Tailwind",
-              "lucide-react",
-              "Flask",
-              "PostgreSQL",
-            ],
-            liveUrl: "https://eventory-steveceto.vercel.app/",
-            githubUrl: "https://github.com/stevecet/eventory",
-            featured: true,
-            category: "Web App",
-          },
-          {
-            id: 3,
-            title: "Forum / Discussion Board",
-            description:
-              "Modern discussion forum where users can create threads, reply to posts, and engage in structured debates. Includes moderation tools, role-based permissions (admin/mod/user), and nested commenting with markdown support.",
-            descriptionvf:
-              "Plateforme de forum de discussion moderne où les utilisateurs peuvent créer des sujets, répondre à des messages, et participer à des débats structurés. Le système inclut des outils de modération, une gestion des rôles (admin/modérateur/utilisateur), et des commentaires imbriqués avec support Markdown.",
-            image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-            technologies: [
-              "Next",
-              "Material UI",
-              "Tailwind",
-              "JWT",
-              "Express",
-              "MongoDB",
-            ],
-            liveUrl: "https://talk-am.vercel.app/",
-            githubUrl: "https://github.com/stevecet/talk-am",
-            featured: false,
-            category: "Web App",
-          },
-          {
-            id: 1,
-            title: "Booking System",
-            name: "Bookify",
-            description:
-              "An appointment booking platform for services such as salons, consulting, or classes. Users can view availability, reserve slots, receive reminders, and manage bookings. Admins configure time slots and services.",
-            descriptionvf:
-              "Plateforme de réservation de rendez-vous adaptée aux services comme les salons de beauté, les consultations ou les cours. Les utilisateurs peuvent consulter les disponibilités, réserver des créneaux, recevoir des rappels et gérer leurs réservations. Les administrateurs peuvent configurer les horaires et les types de services.",
-            image:
-              "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-            technologies: ["Next", "MongoDB", "Express", "Node"],
-            liveUrl: "https://reservo-steveceto.vercel.app",
-            githubUrl: "https://github.com/stevecet/reservo",
-            featured: false,
-            category: "Web App",
-          },
+        category: "Full-Stack System",
+        categoryvf: "Système Full-Stack",
+        liveUrl: "https://eventory-steveceto.vercel.app/",
+        githubUrl: "https://github.com/stevecet/eventory",
+        featured: true,
+        metrics: [
+          { label: "Frontend", value: "Next.js" },
+          { label: "Backend", value: "Flask + Postgres" },
+          { label: "Integrity", value: "ACID Transactions" }
+        ]
+      },
+      {
+        id: "reservo",
+        slug: "reservo",
+        title: "Reservo (Bookify)",
+        subtitle: "Appointment & Service Booking Scheduling Engine",
+        subtitlevf: "Moteur de Prise de Rendez-vous et Réservation de Services",
+        description:
+          "Time-slot booking engine tailored for service professionals (consultancies, salons, studios). Clients inspect real-time availability, lock slots, and receive appointment confirmations.",
+        descriptionvf:
+          "Moteur de prise de rendez-vous sur mesure pour prestataires et cabinets. Les clients consultent les disponibilités en direct, réservent leurs créneaux et reçoivent leurs confirmations.",
+        problem:
+          "Manual booking leads to double-bookings, timezone confusion, and awkward schedule adjustments.",
+        problemvf:
+          "La gestion manuelle des réservations génère des doublons de créneaux, des erreurs de fuseaux horaires et des frictions opérationnelles.",
+        architecture:
+          "Next.js frontend coupled with Node.js/Express backend and MongoDB. Dedicated slot permutation engine calculating working hours, custom break buffers, and existing appointments.",
+        architecturevf:
+          "Front-end Next.js couplé à un back-end Node.js/Express et MongoDB. Moteur de calcul des créneaux déduisant les horaires de travail, marges d'intervalles et rendez-vous existants.",
+        challenges:
+          "Handling dynamic duration services and multi-timezone client calendars while enforcing slot collision prevention.",
+        challengesvf:
+          "Gestion des durées de services variables et des fuseaux horaires avec verrouillage automatique anti-collision de créneaux.",
+        testing:
+          "Automated unit testing for scheduling math, slot availability calculation, and edge cases around overlapping appointments.",
+        testingvf:
+          "Tests unitaires automatisés pour les algorithmes de calcul de plages horaires et la détection de chevauchements.",
+        technologies: [
+          "Next.js",
+          "Node.js",
+          "Express",
+          "MongoDB",
+          "Tailwind CSS"
         ],
-      });
-    }, 500);
+        category: "Web Application",
+        categoryvf: "Application Web",
+        liveUrl: "https://reservo-steveceto.vercel.app",
+        githubUrl: "https://github.com/stevecet/reservo",
+        featured: true,
+        metrics: [
+          { label: "Availability Engine", value: "Real-time" },
+          { label: "Stack", value: "Next + Node" },
+          { label: "Deploy", value: "Vercel" }
+        ]
+      },
+      {
+        id: "talk-am",
+        slug: "talk-am",
+        title: "Talk-Am Forum",
+        subtitle: "Modern Threaded Discussion Platform with RBAC & Markdown",
+        subtitlevf: "Forum de Discussion Moderne avec Markdown & Gestion des Rôles",
+        description:
+          "Structured discussion board featuring nested replies, markdown formatting, role-based access control (Admin, Moderator, Member), and real-time thread interactions.",
+        descriptionvf:
+          "Plateforme de discussion structurée avec réponses imbriquées, formatage Markdown, contrôle d'accès basé sur les rôles (Admin, Modérateur, Membre) et interactions en direct.",
+        problem:
+          "Community groups needed a structured discussion space that avoids chaotic group chat noise while providing markdown syntax highlighting and moderation controls.",
+        problemvf:
+          "Les communautés avaient besoin d'un espace structuré évitant le désordre des messageries instantanées, avec support Markdown et modération proactive.",
+        architecture:
+          "Next.js interface with Express API, MongoDB recursive comment trees, and cryptographic JWT authorization tokens.",
+        architecturevf:
+          "Interface Next.js avec API Express, arbres de commentaires récursifs dans MongoDB et autorisations cryptographiques par JWT.",
+        challenges:
+          "Rendering deep recursive comment threads without re-render performance degradation, paired with strict XSS sanitization for user-submitted markdown.",
+        challengesvf:
+          "Rendu performant des fils de commentaires imbriqués profonds et assainissement rigoureux contre les failles XSS sur le Markdown saisi.",
+        testing:
+          "Security testing for role escalation loopholes and XSS sanitization validation.",
+        testingvf:
+          "Tests de sécurité sur le cloisonnement des rôles et validation des filtres sanitaires XSS.",
+        technologies: [
+          "Next.js",
+          "Express",
+          "MongoDB",
+          "JWT",
+          "Tailwind CSS",
+          "Material UI"
+        ],
+        category: "Community Platform",
+        categoryvf: "Plateforme Communautaire",
+        liveUrl: "https://talk-am.vercel.app/",
+        githubUrl: "https://github.com/stevecet/talk-am",
+        featured: false,
+        metrics: [
+          { label: "Security", value: "RBAC + JWT" },
+          { label: "Rendering", value: "Markdown Safe" },
+          { label: "Deploy", value: "Vercel" }
+        ]
+      }
+    ]
   });
 };
 
-export const certifications = [
+export const certifications: CertificationItem[] = [
   {
     id: 1,
     title: "IBM Full Stack Software Developer Professional Certificate",
-    titlevf: "Certificat Professionnel de Développeur Logiciel Full Stack IBM",
-    description:
-      "A comprehensive, hands-on program that equips with the skills to build, deploy, and manage full-stack applications, covering essential concepts in DevOps, containerization with Docker, version control with Git/GitHub, and cloud deployment using IBM Cloud and CI/CD pipelines.",
-    descriptionvf:
-      "Un programme complet et pratique qui fournit les compétences nécessaires pour concevoir, déployer et gérer des applications full-stack, couvrant les concepts essentiels de DevOps, la conteneurisation avec Docker, la gestion de versions avec Git/GitHub et le déploiement cloud avec IBM Cloud et les pipelines CI/CD.",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IBM_logo.svg/960px-IBM_logo.svg.png?20250604110737",
-    technologies: [
-      "Full-Stack Development",
-      "Cloud Computing",
-      "Software Architecture",
-      "Generative AI",
-      "Python and Data analysis",
-      "Contenerization",
-      "Microservices and Serveless",
-      "Git(Version Control System)",
-    ],
-    liveUrl: "https://drive.google.com/drive/folders/1HoyhcCCafW1UhpKp37nTAlgFrvkjMz8v?usp=sharing",
-    githubUrl: "https://github.com/username/ai-dashboard",
-    featured: true,
+    titlevf: "Certificat Professionnel Développeur Logiciel Full Stack IBM",
+    issuer: "IBM via Coursera",
     year: "2025",
+    description:
+      "Comprehensive multi-course engineering credential covering end-to-end cloud development, microservices, containerization with Docker, CI/CD pipelines, DevOps workflows, Git/GitHub version control, Python data analysis, and full-stack software architecture.",
+    descriptionvf:
+      "Accréditation d'ingénierie approfondie couvrant le développement cloud, les microservices, la conteneurisation Docker, les pipelines CI/CD, les pratiques DevOps, le versionnage Git/GitHub, l'analyse Python et l'architecture logicielle full-stack.",
+    technologies: [
+      "Full-Stack Architecture",
+      "Docker & Containers",
+      "CI/CD Pipelines",
+      "DevOps",
+      "Cloud Deployment",
+      "Python",
+      "Microservices",
+      "Git"
+    ],
+    liveUrl: "https://drive.google.com/drive/folders/1HoyhcCCafW1UhpKp37nTAlgFrvkjMz8v?usp=sharing"
+  }
+];
+
+export const technicalCapabilities = [
+  {
+    domain: "Frontend Architecture",
+    domainvf: "Architecture Frontend",
+    description: "Designing resilient, accessible component systems with deliberate state management and fluid performance.",
+    descriptionvf: "Conception de systèmes de composants accessibles et performants avec gestion d'état maîtrisée.",
+    technologies: [
+      { name: "React", level: "Primary", context: "Production SPAs, hooks, custom state engines" },
+      { name: "Next.js", level: "Primary", context: "App Router, SSR, API routes, edge rendering" },
+      { name: "TypeScript", level: "Primary", context: "Strict typing, generics, schema validation" },
+      { name: "Tailwind CSS", level: "Primary", context: "Design systems, custom utility architectures" },
+      { name: "React Native", level: "Secondary", context: "Cross-platform mobile applications" },
+      { name: "Angular", level: "Secondary", context: "Enterprise telematics and tracking UIs" }
+    ]
   },
+  {
+    domain: "Backend & Systems",
+    domainvf: "Backend & Systèmes",
+    description: "Engineering scalable APIs, connector microservices, and reliable server-side business logic.",
+    descriptionvf: "Développement d'APIs évolutives, connecteurs microservices et logique métier serveur robuste.",
+    technologies: [
+      { name: "Laravel (PHP)", level: "Primary", context: "REST APIs, Eloquent ORM, queued jobs, authentication" },
+      { name: "Symfony (PHP)", level: "Primary", context: "Enterprise backend architectures, API connectors" },
+      { name: "Go (Golang)", level: "Secondary", context: "High-concurrency microservices, network connectors" },
+      { name: "Node.js & Express", level: "Primary", context: "Microservices, async workers, REST endpoints" },
+      { name: "Python / Flask", level: "Secondary", context: "Data ingestion, utility APIs, spatial querying" }
+    ]
+  },
+  {
+    domain: "Databases & Storage",
+    domainvf: "Bases de Données & Stockage",
+    description: "Structuring transactional relational schemas and document stores with indexing discipline.",
+    descriptionvf: "Structuration de schémas relationnels et documentaires avec optimisation des index.",
+    technologies: [
+      { name: "PostgreSQL", level: "Primary", context: "Relational integrity, ACID transactions, complex joins" },
+      { name: "MySQL", level: "Primary", context: "High-read platforms, indexing, migration schemas" },
+      { name: "MongoDB", level: "Primary", context: "Document aggregation pipelines, nested structures" }
+    ]
+  },
+  {
+    domain: "QA, Testing & Verification",
+    domainvf: "Assurance Qualité & Tests",
+    description: "Guaranteeing platform stability through automated regression test suites and defect tracking.",
+    descriptionvf: "Garantie de stabilité via suites de tests de régression automatisés et suivi des anomalies.",
+    technologies: [
+      { name: "Cypress", level: "Primary", context: "End-to-end browser regression automation" },
+      { name: "Codeception", level: "Primary", context: "Acceptance and functional testing pipelines" },
+      { name: "PHPUnit", level: "Primary", context: "Backend API contract and unit verification" },
+      { name: "Appium / Maestro", level: "Secondary", context: "Mobile automated regression flows" },
+      { name: "JIRA", level: "Workflow", context: "Agile issue tracking and defect triage" }
+    ]
+  },
+  {
+    domain: "DevOps & Tooling",
+    domainvf: "DevOps & Outils",
+    description: "Automating delivery pipelines, reproducible container environments, and infrastructure.",
+    descriptionvf: "Automatisation des pipelines de livraison, conteneurs reproductibles et infrastructure.",
+    technologies: [
+      { name: "Docker", level: "Workflow", context: "Local containerized environments, microservice setup" },
+      { name: "Git & GitHub Actions", level: "Workflow", context: "Trunk-based branches, CI verification" },
+      { name: "Vercel", level: "Production", context: "Zero-downtime deployment, serverless edge" },
+      { name: "Linux / Shell", level: "Workflow", context: "Scripting, server diagnostics, SSH environments" }
+    ]
+  }
 ];

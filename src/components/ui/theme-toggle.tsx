@@ -1,40 +1,36 @@
-"use client"
-
-import { useEffect, useState } from "react"
-import { Moon, Sun } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Moon, Sun } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/components/ui/theme-provider";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light")
+  const { theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    const isDark = document.documentElement.classList.contains("dark")
-    setTheme(isDark ? "dark" : "light")
-  }, [])
+  const isDark = theme === "dark";
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light"
-    setTheme(newTheme)
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark")
-    } else {
-      document.documentElement.classList.remove("dark")
-    }
-  }
+  const handleToggle = () => {
+    setTheme(isDark ? "light" : "dark");
+  };
 
   return (
     <Button
-      variant="ghost"
-      size="icon"
-      onClick={toggleTheme}
-      className="w-9 h-9 rounded-full transition-colors hover:bg-accent"
+      variant="outline"
+      size="sm"
+      onClick={handleToggle}
+      className="h-8 px-2.5 font-mono text-xs border-border bg-secondary/50 hover:bg-secondary text-foreground rounded-xs flex items-center gap-1.5 transition-colors"
+      aria-label="Toggle visual theme"
+      title={isDark ? "Switch to Editorial Light mode" : "Switch to Slate Dark mode"}
     >
-      {theme === "dark" ? (
-        <Sun className="h-5 w-5 transition-all" />
+      {isDark ? (
+        <>
+          <Sun className="h-3.5 w-3.5 text-amber-400" />
+          <span className="text-[10px] uppercase tracking-wider font-semibold">Light</span>
+        </>
       ) : (
-        <Moon className="h-5 w-5 transition-all" />
+        <>
+          <Moon className="h-3.5 w-3.5 text-slate-700" />
+          <span className="text-[10px] uppercase tracking-wider font-semibold">Dark</span>
+        </>
       )}
-      <span className="sr-only">Toggle theme</span>
     </Button>
-  )
+  );
 }

@@ -1,109 +1,150 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/useToast";
-import { Github, Linkedin, Mail, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, Copy, Check, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/useLanguage";
 
 export function ContactSection() {
   const { toast } = useToast();
   const { t } = useLanguage();
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
   const copyEmail = () => {
     navigator.clipboard.writeText("steveceto@gmail.com");
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
     toast({
       title: t("contact.copied"),
       description: t("contact.copiedDesc"),
     });
   };
 
+  const copyPhone = () => {
+    navigator.clipboard.writeText("+237659461748");
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
+    toast({
+      title: t("phone.copied"),
+      description: t("phone.copiedDesc"),
+    });
+  };
+
   return (
-    <section id="contact" className="py-32 relative bg-background border-t border-border overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30 dark:opacity-10 pointer-events-none" />
-      
+    <section id="contact" className="py-24 sm:py-32 relative bg-background border-t border-border overflow-hidden">
+      {/* Background Grid */}
+      <div className="absolute inset-0 grid-bg opacity-30 dark:opacity-15 pointer-events-none" />
+
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl relative z-10">
-        <div className="flex flex-col items-center text-center">
+        <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+          
+          {/* Eyebrow */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8"
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.3 }}
+            className="mb-6"
           >
-            <span className="font-mono text-sm tracking-widest text-muted-foreground uppercase border border-border px-4 py-2 bg-card">
+            <span className="font-mono text-xs tracking-widest text-muted-foreground uppercase border border-border px-3 py-1 bg-secondary/60 rounded-xs">
               {t("contact.step")}
             </span>
           </motion.div>
 
+          {/* Heading */}
           <motion.h2
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl sm:text-6xl md:text-7xl font-sans font-bold tracking-tighter mb-6 uppercase"
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.35, delay: 0.05 }}
+            className="text-4xl sm:text-5xl md:text-6xl font-sans font-bold tracking-tight text-foreground mb-6"
           >
-            {t("contact.headline_1")} <br/>
+            {t("contact.headline_1")} <br className="hidden sm:inline" />
             <span className="text-muted-foreground">{t("contact.headline_2")}</span>
           </motion.h2>
 
+          {/* Subtext */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-lg md:text-xl text-foreground font-mono mb-16 max-w-2xl"
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.35, delay: 0.1 }}
+            className="text-lg sm:text-xl text-foreground font-mono mb-12 max-w-2xl leading-relaxed"
           >
             {t("contact.headline_3")}
           </motion.p>
 
+          {/* Direct CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row items-center gap-6 mb-24"
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ duration: 0.35, delay: 0.15 }}
+            className="flex flex-col sm:flex-row items-center gap-4 mb-20 w-full sm:w-auto"
           >
-            <a 
+            <a
               href="mailto:steveceto@gmail.com"
-              className="bg-foreground text-background px-8 h-14 flex items-center justify-center font-mono text-sm font-medium transition-transform hover:-translate-y-1 w-full sm:w-auto"
+              className="bg-foreground text-background px-8 h-12 flex items-center justify-center gap-2 font-mono text-xs font-semibold uppercase tracking-wider rounded-xs hover:opacity-90 active:scale-[0.98] transition-all w-full sm:w-auto"
             >
-              {t("contact.contact_me")}
+              <Mail className="w-4 h-4" />
+              <span>{t("contact.contact_me")}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </a>
-            <button 
+
+            <button
               onClick={copyEmail}
-              className="border border-border bg-transparent px-8 h-14 flex items-center justify-center font-mono text-sm font-medium hover:bg-secondary transition-colors w-full sm:w-auto"
+              className="border border-border bg-secondary/40 px-6 h-12 flex items-center justify-center gap-2 font-mono text-xs font-medium uppercase tracking-wider rounded-xs hover:bg-secondary transition-colors w-full sm:w-auto"
             >
-              {t("contact.copy_email")}
+              {copiedEmail ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4 text-muted-foreground" />}
+              <span>{copiedEmail ? t("contact.copied") : t("contact.copy_email")}</span>
             </button>
           </motion.div>
 
+          {/* Verified Technical Telemetry Coordinates */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 font-mono text-sm w-full max-w-4xl border-t border-border pt-12"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 font-mono text-xs w-full border-t border-border pt-12 text-left"
           >
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
-              <span className="text-muted-foreground text-xs tracking-widest uppercase">Email</span>
-              <a href="mailto:steveceto@gmail.com" className="hover:text-muted-foreground transition-colors break-all">steveceto@gmail.com</a>
-            </div>
-            
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
-              <span className="text-muted-foreground text-xs tracking-widest uppercase">Location</span>
-              <span className="flex items-center gap-1"><MapPin className="w-3 h-3"/> Douala, Cameroon</span>
-            </div>
-
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
-              <span className="text-muted-foreground text-xs tracking-widest uppercase">GitHub</span>
-              <a href="https://github.com/stevecet/" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-muted-foreground transition-colors">
-                <Github className="w-3 h-3"/> @stevecet
+            <div className="border border-border/70 bg-card p-4 rounded-xs">
+              <span className="text-muted-foreground text-[10px] tracking-widest uppercase block mb-1">Direct Email</span>
+              <a href="mailto:steveceto@gmail.com" className="text-foreground font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-all">
+                steveceto@gmail.com
               </a>
             </div>
 
-            <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-2">
-              <span className="text-muted-foreground text-xs tracking-widest uppercase">LinkedIn</span>
-              <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-muted-foreground transition-colors">
-                <Linkedin className="w-3 h-3"/> View Profile
-              </a>
+            <div className="border border-border/70 bg-card p-4 rounded-xs">
+              <span className="text-muted-foreground text-[10px] tracking-widest uppercase block mb-1">Direct Phone</span>
+              <button onClick={copyPhone} className="text-foreground font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1.5">
+                {copiedPhone ? <Check className="w-3 h-3 text-emerald-500" /> : <Phone className="w-3 h-3 text-muted-foreground" />}
+                <span>+237 659 46 17 48</span>
+              </button>
+            </div>
+
+            <div className="border border-border/70 bg-card p-4 rounded-xs">
+              <span className="text-muted-foreground text-[10px] tracking-widest uppercase block mb-1">Headquarters</span>
+              <span className="text-foreground font-semibold flex items-center gap-1.5">
+                <MapPin className="w-3 h-3 text-muted-foreground" />
+                Douala, Cameroon
+              </span>
+            </div>
+
+            <div className="border border-border/70 bg-card p-4 rounded-xs">
+              <span className="text-muted-foreground text-[10px] tracking-widest uppercase block mb-1">Networks</span>
+              <div className="flex items-center gap-3">
+                <a href="https://github.com/stevecet/" target="_blank" rel="noreferrer" className="text-foreground hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
+                  <Github className="w-3 h-3" /> GitHub
+                </a>
+                <span className="text-border">/</span>
+                <a href="https://www.linkedin.com/in/gilchrist-steve-aurel-veceto-6a4216202/" target="_blank" rel="noreferrer" className="text-foreground hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center gap-1">
+                  <Linkedin className="w-3 h-3" /> LinkedIn
+                </a>
+              </div>
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

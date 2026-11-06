@@ -1,7 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosError, InternalAxiosRequestConfig, AxiosInstance } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import JSONbig from 'json-bigint';
-
-
 
 const localApi = axios.create({
   headers: {
@@ -13,38 +11,29 @@ const localApi = axios.create({
   transformResponse: [(data) => JSONbig.parse(data)]
 });
 
-
-
-let accessToken: string | null = null;
-
-const getApiInstance = (url: string) => {
+const getApiInstance = () => {
   return localApi;
 };
 
-const isAuthEndpoint = (url: string): boolean => {
-  return url.includes("/api/auth");
-};
-
-
 const api = {
   request: (config: AxiosRequestConfig) => {
-    const apiInstance = getApiInstance(config.url || '');
+    const apiInstance = getApiInstance();
     return apiInstance(config);
   },
   get: (url: string, config?: AxiosRequestConfig) => {
-    const apiInstance = getApiInstance(url);
+    const apiInstance = getApiInstance();
     return apiInstance.get(url, config);
   },
-  post: (url: string, data?: any, config?: AxiosRequestConfig) => {
-    const apiInstance = getApiInstance(url);
+  post: (url: string, data?: unknown, config?: AxiosRequestConfig) => {
+    const apiInstance = getApiInstance();
     return apiInstance.post(url, data, config);
   },
-  put: (url: string, data?: any, config?: AxiosRequestConfig) => {
-    const apiInstance = getApiInstance(url);
+  put: (url: string, data?: unknown, config?: AxiosRequestConfig) => {
+    const apiInstance = getApiInstance();
     return apiInstance.put(url, data, config);
   },
   delete: (url: string, config?: AxiosRequestConfig) => {
-    const apiInstance = getApiInstance(url);
+    const apiInstance = getApiInstance();
     return apiInstance.delete(url, config);
   },
 };
